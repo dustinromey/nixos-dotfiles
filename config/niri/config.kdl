@@ -1,0 +1,329 @@
+// Niri configuration for CachyOS
+// For documentation and full reference, see: https://github.com/YaLTeR/niri/wiki
+
+// ────────────── Input Configuration ──────────────
+// https://github.com/YaLTeR/niri/wiki/Configuration:-Input
+
+input {
+
+    keyboard {
+        xkb {
+            layout "us" // Use the German keyboard layout
+        }
+        numlock // Enable numlock on startup
+    }
+
+    touchpad {
+        tap // Enable tap-to-click
+        natural-scroll // Enable natural (macOS-style) scrolling
+        scroll-factor 0.8 // A little more slowly
+
+        // Sets 1-finger tap = left, 2-finger = right, 3-finger = middle
+        // This is the default, but good to be explicit.
+        tap-button-map "left-right-middle"
+
+        // This makes physical *clicks* (not taps) also use
+        // the number of fingers to decide the click type.
+        click-method "clickfinger"
+    }
+
+    mouse {
+      // Disable natural scroll for Trackball
+      // natural-scroll
+    }
+
+    focus-follows-mouse // Automatically focus windows under the mouse pointer
+    workspace-auto-back-and-forth // Enable workspace back & forth switching
+}
+
+// ────────────── Output Configuration ──────────────
+// You can run `niri msg outputs` to get the correct name for your displays.
+// You will have to remove "/-" and edit it before it takes effect.
+// https://github.com/YaLTeR/niri/wiki/Configuration:-Outputs
+
+/- output "DP-1" {
+    mode "2560x1440@359.979" // Set resolution and refresh rate
+    scale 1 // No scaling (use 2 for HiDPI)
+}
+
+// ────────────── Keybindings ──────────────
+// https://github.com/YaLTeR/niri/wiki/Configuration:-Key-Bindings
+
+binds {
+    MOD+K                                { show-hotkey-overlay; }
+    MOD+CTRL+R hotkey-overlay-title="Reload Config" { spawn "niri" "msg" "action" "reload-config"; }
+
+    // ─── Meeting Setup ───
+    MOD+M hotkey-overlay-title="Meeting Setup" { spawn "bash" "/home/dustin/.local/bin/niri-meeting-setup.sh"; }
+
+    // ─── Aesthetics ───
+    Mod+Shift+Space hotkey-overlay-title="Toggle Waybar" { spawn "bash" "-c" "pkill waybar || waybar &"; }
+
+    // ─── Applications ───
+    Mod+Return { spawn "ghostty"; }
+    Mod+Space { spawn "rofi" "-show" "drun" "-show-icons"; }
+    Mod+B { spawn "brave"; }
+    MOD+ALT+L hotkey-overlay-title="Lock Screen" { spawn "bash" "/home/dustin/.local/bin/swaylock-random"; }
+
+    // File manager
+    Mod+E { spawn "dolphin"; }
+
+    // Clipboard history (cliphist + rofi + wl-clipboard)
+    Mod+V {
+        spawn "bash" "-c" "cliphist list | rofi -dmenu -p 'Clipboard' | cliphist decode | wl-copy"
+    }
+    // Set a new random wallpaper from the walls folder
+    Mod+Shift+W {
+        spawn "bash" "-c" "swww img $(find ~/Pictures/walls/ -type f | shuf -n 1)"
+    }
+
+    // TODO: Speech to Text - waystt not available in nixpkgs yet
+    // Mod+R { spawn "sh" "-c" "pgrep -x waystt >/dev/null && pkill --signal SIGUSR1 waystt || (waystt --pipe-to /usr/bin/ydotool type --file - &)"; }
+    // Mod+Shift+R { spawn "sh" "-c" "pgrep -x waystt >/dev/null && pkill --signal SIGUSR1 waystt || (waystt --pipe-to /usr/bin/wl-copy &)"; }
+
+    // ── Audio Controls (with OSD) ───
+    // Using swayosd for on-screen display
+    XF86AudioRaiseVolume                allow-when-locked=true { spawn "swayosd-client" "--output-volume" "raise"; }
+    XF86AudioLowerVolume                allow-when-locked=true { spawn "swayosd-client" "--output-volume" "lower"; }
+    XF86AudioMute                       allow-when-locked=true { spawn "swayosd-client" "--output-volume" "mute-toggle"; }
+    XF86AudioMicMute                    allow-when-locked=true { spawn "swayosd-client" "--input-volume" "mute-toggle"; }
+    XF86AudioNext                       allow-when-locked=true { spawn "playerctl" "next"; }
+    XF86AudioPause                      allow-when-locked=true { spawn "playerctl" "play-pause"; }
+    XF86AudioPlay                       allow-when-locked=true { spawn "playerctl" "play-pause"; }
+    XF86AudioPrev                       allow-when-locked=true { spawn "playerctl" "previous"; }
+
+    // ── Brightness Controls (with OSD) ───
+    XF86MonBrightnessUp                 allow-when-locked=true { spawn "swayosd-client" "--brightness" "raise"; }
+    XF86MonBrightnessDown               allow-when-locked=true { spawn "swayosd-client" "--brightness" "lower"; }
+
+    // ─── Window Management ───
+    MOD+W                               { close-window; }
+
+    MOD+LEFT                            { focus-column-left; }
+    MOD+H                               { focus-column-left; }
+    MOD+RIGHT                           { focus-column-right; }
+    MOD+L                               { focus-column-right; }
+    MOD+UP                              { focus-window-up; }
+    MOD+DOWN                            { focus-window-down; }
+    MOD+J                               { focus-window-down; }
+
+    MOD+SHIFT+LEFT                      { move-column-left; }
+    MOD+SHIFT+H                         { move-column-left; }
+    MOD+SHIFT+RIGHT                     { move-column-right; }
+    MOD+SHIFT+L                         { move-column-right; }
+    MOD+SHIFT+UP                        { move-window-up; }
+    MOD+SHIFT+DOWN                      { move-window-down; }
+
+    MOD+HOME                            { focus-column-first; }
+    MOD+END                             { focus-column-last; }
+    MOD+SHIFT+HOME                      { move-column-to-first; }
+    MOD+SHIFT+END                       { move-column-to-last; }
+
+    MOD+SHIFT+CTRL+LEFT                 { focus-monitor-left; }
+    MOD+SHIFT+CTRL+RIGHT                { focus-monitor-right; }
+    MOD+SHIFT+CTRL+UP                   { focus-monitor-up; }
+    MOD+SHIFT+CTRL+DOWN                 { focus-monitor-down; }
+
+    MOD+SHIFT+CTRL+H                    { move-column-to-monitor-left; }
+    MOD+SHIFT+CTRL+L                    { move-column-to-monitor-right; }
+    MOD+SHIFT+CTRL+K                    { move-column-to-monitor-up; }
+    MOD+SHIFT+CTRL+J                    { move-column-to-monitor-down; }
+
+    // ─── Workspace Switching ───
+    MOD+WHEELSCROLLDOWN                 cooldown-ms=150 { focus-workspace-down; }
+    MOD+WHEELSCROLLUP                   cooldown-ms=150 { focus-workspace-up; }
+    MOD+CTRL+WHEELSCROLLDOWN            cooldown-ms=150 { move-column-to-workspace-down; }
+    MOD+CTRL+WHEELSCROLLUP              cooldown-ms=150 { move-column-to-workspace-up; }
+
+    MOD+WHEELSCROLLRIGHT                { focus-column-right; }
+    MOD+WHEELSCROLLLEFT                 { focus-column-left; }
+    MOD+CTRL+WHEELSCROLLRIGHT           { move-column-right; }
+    MOD+CTRL+WHEELSCROLLLEFT            { move-column-left; }
+
+    MOD+SHIFT+WHEELSCROLLDOWN           { focus-column-right; }
+    MOD+SHIFT+WHEELSCROLLUP             { focus-column-left; }
+    MOD+CTRL+SHIFT+WHEELSCROLLDOWN      { move-column-right; }
+    MOD+CTRL+SHIFT+WHEELSCROLLUP        { move-column-left; }
+
+    MOD+1                               { focus-workspace 1; }
+    MOD+2                               { focus-workspace 2; }
+    MOD+3                               { focus-workspace 3; }
+    MOD+4                               { focus-workspace 4; }
+    MOD+5                               { focus-workspace 5; }
+    MOD+6                               { focus-workspace 6; }
+    MOD+7                               { focus-workspace 7; }
+    MOD+8                               { focus-workspace 8; }
+    MOD+9                               { focus-workspace 9; }
+
+    MOD+SHIFT+1                          { move-column-to-workspace 1; }
+    MOD+SHIFT+2                          { move-column-to-workspace 2; }
+    MOD+SHIFT+3                          { move-column-to-workspace 3; }
+    MOD+SHIFT+4                          { move-column-to-workspace 4; }
+    MOD+SHIFT+5                          { move-column-to-workspace 5; }
+    MOD+SHIFT+6                          { move-column-to-workspace 6; }
+    MOD+SHIFT+7                          { move-column-to-workspace 7; }
+    MOD+SHIFT+8                          { move-column-to-workspace 8; }
+    MOD+SHIFT+9                          { move-column-to-workspace 9; }
+
+    MOD+TAB                             { focus-workspace-previous; }
+
+    // ─── Layout Controls ───
+    MOD+CTRL+F                          { expand-column-to-available-width; }
+    MOD+C                               { center-column; }
+    MOD+CTRL+C                          { center-visible-columns; }
+    MOD+MINUS                           { set-column-width "-10%"; }
+    MOD+EQUAL                           { set-column-width "+10%"; }
+    MOD+SHIFT+MINUS                     { set-window-height "-10%"; }
+    MOD+SHIFT+EQUAL                     { set-window-height "+10%"; }
+
+    // ─── Modes ───
+    MOD+T                               { toggle-window-floating; }
+    MOD+F                               { maximize-column; }
+    MOD+SHIFT+F                         { fullscreen-window; }
+    MOD+SHIFT+T                         { toggle-column-tabbed-display; }
+
+    // ─── Screenshots ───
+    PRINT hotkey-overlay-title="Screenshot UI"           { screenshot; }
+    SHIFT+PRINT hotkey-overlay-title="Screenshot Screen" { screenshot-screen; }
+    ALT+PRINT hotkey-overlay-title="Screenshot Window"   { screenshot-window; }
+    // TODO: Color picker - hyprpicker not installed
+    // MOD+PRINT hotkey-overlay-title="Color Picker"        { spawn "hyprpicker" "-a"; }
+
+    // ─── Emergency Escape Key ───
+    // Use this when a fullscreen app blocks your keybinds.
+    // It disables any active keyboard shortcut inhibitor, restoring control.
+    MOD+SHIFT+ESCAPE                    allow-inhibiting=false { toggle-keyboard-shortcuts-inhibit; }
+
+    // ─── Exit / Power ───
+    CTRL+ALT+DELETE                     { quit; } // Also quits Niri
+    MOD+SHIFT+P                         { power-off-monitors; } // Turn off screens (useful for OLED or privacy)
+    MOD+O                               repeat=false { toggle-overview; }
+}
+
+// ────────────── Startup Applications ──────────────
+// https://github.com/YaLTeR/niri/wiki/Configuration:-Miscellaneous#spawn-at-startup
+    // XWayland
+    spawn-at-startup "Xwayland" ":0"
+
+    // ─── Core Services ───
+    // Polkit is handled by systemd user service in configuration.nix
+    spawn-at-startup "mako" // Notification daemon
+    spawn-at-startup "swayosd-server" // On-screen display for volume/brightness
+    spawn-at-startup "swww-daemon" // Wallpaper daemon
+
+    // ─── Status Bar ───
+    spawn-at-startup "waybar"
+
+    // ─── Clipboard ───
+    spawn-at-startup "bash" "-c" "wl-paste --watch cliphist store"
+
+    // ─── Input Method (uncomment if needed for Asian languages) ───
+    // spawn-at-startup "fcitx5"
+
+    prefer-no-csd // Disable program decorations
+    screenshot-path "~/Pictures/Screenshots/Screenshot=%Y-%m-%d %H:%M:%S.png"
+
+// ────────────── Layout Settings ──────────────
+// https://github.com/YaLTeR/niri/wiki/Configuration:-Layout
+
+    layout {
+        gaps 6 // Gap between windows
+        center-focused-column "never" // Don't auto-center (manual with MOD+C if needed)
+
+        // Set the default width of new windows to 80%
+        default-column-width {
+            proportion 0.8;
+        }
+
+        preset-column-widths {
+            proportion 0.33333
+            proportion 0.5
+            proportion 0.66667
+        }
+
+        focus-ring {
+            width 1
+            // active-color "#00ac89"
+            active-color "#7aa2f7"
+            // inactive-color "#505050"
+            inactive-color "#9aa5ce"
+        }
+
+        shadow {
+            softness 30
+            spread 5
+            offset x=0 y=5
+            color "#0007"
+        }
+
+        struts {}
+    }
+
+// ────────────── Animation Settings ──────────────
+// https://github.com/YaLTeR/niri/wiki/Configuration:-Animations
+    animations {
+        workspace-switch {
+            spring damping-ratio=1.0 stiffness=1000 epsilon=0.0001
+        }
+        window-open {
+            duration-ms 200
+            curve "ease-out-quad"
+        }
+        window-close {
+            duration-ms 200
+            curve "ease-out-cubic"
+        }
+        horizontal-view-movement {
+            spring damping-ratio=1.0 stiffness=900 epsilon=0.0001
+        }
+        window-movement {
+            spring damping-ratio=1.0 stiffness=800 epsilon=0.0001
+        }
+        window-resize {
+            spring damping-ratio=1.0 stiffness=1000 epsilon=0.0001
+        }
+        config-notification-open-close {
+            spring damping-ratio=0.6 stiffness=1200 epsilon=0.001
+        }
+        screenshot-ui-open {
+            duration-ms 300
+            curve "ease-out-quad"
+        }
+        overview-open-close {
+            spring damping-ratio=1.0 stiffness=900 epsilon=0.0001
+        }
+    }
+
+// ────────────── Window Rules ──────────────
+// https://github.com/YaLTeR/niri/wiki/Configuration:-Window-Rules
+
+    window-rule {
+        match app-id=r#"firefox$"# title="^Picture-in-Picture$"
+        open-floating true // Always float Firefox PiP windows
+    }
+
+    window-rule {
+        geometry-corner-radius 5 // Set every window radius to 20
+        clip-to-geometry true
+    }
+
+// ────────────── Environment Variables ──────────────
+// https://github.com/YaLTeR/niri/wiki/Configuration:-Miscellaneous#environment
+
+    environment {
+        DISPLAY ":1"
+        ELECTRON_OZONE_PLATFORM_HINT "auto"
+        QT_QPA_PLATFORM "wayland"
+        QT_WAYLAND_DISABLE_WINDOWDECORATION "1"
+        XDG_SESSION_TYPE "wayland"
+        XDG_CURRENT_DESKTOP "niri"
+
+        // for Speech To Text
+        YDOTOOL_SOCKET "/tmp/.ydotool_socket"
+
+        // NixOS handles PATH - don't override it
+    }
+
+    hotkey-overlay {
+        skip-at-startup
+    }

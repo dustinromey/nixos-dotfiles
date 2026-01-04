@@ -1,0 +1,42 @@
+# Mako notification daemon configuration
+# Tokyo Night theme matching waybar
+
+# Appearance
+font=Hack 11
+background-color=#1a1b26
+text-color=#c0caf5
+border-color=#7aa2f7
+border-size=2
+border-radius=8
+
+# Layout
+width=350
+height=150
+margin=10
+padding=15
+
+# Behavior
+default-timeout=5000
+ignore-timeout=0
+
+# Icons
+icons=1
+max-icon-size=48
+
+# Grouping
+group-by=app-name
+max-visible=3
+
+# Urgency-specific colors
+[urgency=low]
+border-color=#565f89
+default-timeout=3000
+
+[urgency=normal]
+border-color=#7aa2f7
+default-timeout=5000
+
+[urgency=critical]
+border-color=#f7768e
+text-color=#f7768e
+default-timeout=0

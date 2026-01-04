@@ -1,0 +1,11 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(tree:*)",
+      "Bash(ls:*)",
+      "Bash(find:*)",
+      "WebFetch(domain:*)",
+      "Bash(nix flake check:*)"
+    ]
+  }
+}

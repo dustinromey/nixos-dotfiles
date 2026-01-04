@@ -1,0 +1,15 @@
+#!/usr/bin/env bash
+
+# Lock screen with a random wallpaper from ~/Pictures/walls
+
+WALLS_DIR="$HOME/Pictures/walls"
+
+# Pick a random wallpaper
+WALLPAPER=$(find "$WALLS_DIR" -type f \( -name "*.jpg" -o -name "*.png" \) | shuf -n1)
+
+if [ -z "$WALLPAPER" ]; then
+    # Fallback to solid color if no wallpapers found
+    swaylock -f -c 000000
+else
+    swaylock -f --image "$WALLPAPER" --scaling fill
+fi

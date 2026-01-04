@@ -1,0 +1,40 @@
+// Zed keymap
+//
+// For information on binding keys, see the Zed
+// documentation: https://zed.dev/docs/key-bindings
+//
+// To see the default key bindings run `zed: open default keymap`
+// from the command palette.
+[
+  {
+    "context": "Workspace",
+    "bindings": {
+      // "shift shift": "file_finder::Toggle"
+    }
+  },
+  {
+    "context": "Editor && vim_mode == insert",
+    "bindings": {
+      // "j k": "vim::NormalBefore"
+    }
+  },
+  {
+    "context": "Terminal",
+    "bindings": {
+      // 1. Remaps Ctrl-C to copy text from the terminal
+      "ctrl-c": "terminal::Copy",
+
+      // 2. Remaps Ctrl-V to paste text into the terminal
+      "ctrl-v": "terminal::Paste",
+
+      // 3. Remaps Ctrl-X to send the SIGINT signal (as "ctrl-c")
+      "ctrl-x": ["terminal::SendKeystroke", "ctrl-c"],
+
+      // 4. shift+enter = new line
+      "shift-enter": [
+        "terminal::SendText",
+        "\u001b\r"
+      ]
+    }
+  }
+]
