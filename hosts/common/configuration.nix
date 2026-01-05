@@ -45,6 +45,8 @@
   programs.firefox.enable = true;
   programs.niri.enable = true;
 
+  boot.plymouth.enable = true;
+
   # Polkit authentication agent (for mounting drives, etc.)
   security.polkit.enable = true;
   systemd.user.services.polkit-kde-authentication-agent-1 = {
