@@ -78,6 +78,7 @@ in
     fastfetch
     btop
     claude-code
+    inputs.fresh.packages.${pkgs.system}.default  # Fresh text editor
     waybar
     impala       # WiFi TUI
     bluetui      # Bluetooth TUI

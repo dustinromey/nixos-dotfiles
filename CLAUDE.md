@@ -125,3 +125,10 @@ Defined in hosts/common/home.nix: nixd, pyright, rust-analyzer, gopls, typescrip
 ## Installed Formatters
 
 nixfmt-rfc-style, black (Python), rustfmt, stylua (Lua), prettier (JS/TS), shfmt (Bash), goimports (Go)
+
+## Git Commit Style
+
+When making commits:
+- Use simple commit messages without AI attribution footers
+- Do not include "Generated with Claude Code" or "Co-Authored-By" lines
+- Format: `[type]: [description]` (e.g., `feat: add Fresh text editor`)
