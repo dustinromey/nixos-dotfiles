@@ -1,5 +1,17 @@
 # Quick Reference - Multi-Host NixOS
 
+## Installing NixOS on New Hosts
+
+For detailed instructions on installing NixOS on intrepid or vigilant (or any new host), see:
+**[NixOS Installation Guide](./docs/nixos-installation-guide.md)**
+
+This covers:
+- Pre-installation backups (Syncthing, SSH keys)
+- NixOS installation from USB
+- Switching to this flake configuration
+- sops-nix secrets setup
+- Verification steps
+
 ## Rebuild Commands
 
 ```bash
