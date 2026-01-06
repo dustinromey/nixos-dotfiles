@@ -33,10 +33,13 @@
   hardware.bluetooth.enable = lib.mkDefault true;
   hardware.bluetooth.powerOnBoot = lib.mkDefault true;
 
+  # Enable uinput for evremap (key remapping)
+  hardware.uinput.enable = lib.mkDefault true;
+
   # Define a user account. Don't forget to set a password with 'passwd'.
   users.users.dustin = {
     isNormalUser = true;
-    extraGroups = [ "wheel" ]; # Enable 'sudo' for the user.
+    extraGroups = [ "wheel" "input" "uinput" ]; # Enable 'sudo' for the user.
     packages = with pkgs; [
       tree
     ];
@@ -67,6 +70,18 @@
   services.udisks2.enable = true;
   services.gvfs.enable = true;  # Virtual filesystem for removable media
 
+  # evremap - evdev-based key remapping service
+  systemd.services.evremap = {
+    description = "evdev key remapper";
+    wantedBy = [ "multi-user.target" ];
+    serviceConfig = {
+      Type = "simple";
+      ExecStart = "${pkgs.evremap}/bin/evremap remap /home/dustin/nixos-dotfiles/config/evremap/rk-s70.toml";
+      Restart = "always";
+      RestartSec = "1";
+    };
+  };
+
   # XDG Portal for file dialogs (uses KDE/Dolphin)
   xdg.portal = {
     enable = true;
@@ -88,6 +103,7 @@
     kdePackages.dolphin      # File manager
     kdePackages.qtwayland    # Qt Wayland support
     kdePackages.kio-extras   # Extra protocols for Dolphin (trash, sftp, etc.)
+    evremap                  # evdev-based key remapper (works with X11 and Wayland)
   ];
 
   fonts.packages = with pkgs; [

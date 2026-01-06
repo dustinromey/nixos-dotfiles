@@ -1,0 +1,18 @@
+device_name = "Compx 2.4G Wireless Receiver"
+
+[[dual_role]]
+input = "KEY_CAPSLOCK"
+hold = ["KEY_LEFTCTRL"]
+tap = ["KEY_ESC"]
+
+[[remap]]
+input = ["KEY_ESC"]
+output = ["KEY_GRAVE"]
+
+[[remap]]
+input = ["KEY_GRAVE"]
+output = ["KEY_DELETE"]
+
+[[remap]]
+input = ["KEY_DELETE"]
+output = ["KEY_SYSRQ"]
