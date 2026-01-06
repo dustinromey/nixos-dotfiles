@@ -9,6 +9,10 @@
     # Claude
     claude-code.url = "github:ryoppippi/claude-code-overlay";
     claude-code.inputs.nixpkgs.follows = "nixpkgs";
+
+    # Secrets management
+    sops-nix.url = "github:Mic92/sops-nix";
+    sops-nix.inputs.nixpkgs.follows = "nixpkgs";
   };
 
   outputs = { self, nixpkgs, home-manager, ... }@inputs:
@@ -19,6 +23,7 @@
         specialArgs = { inherit inputs; };
         modules = [
           ./hosts/${hostname}/configuration.nix
+          inputs.sops-nix.nixosModules.sops
           home-manager.nixosModules.home-manager
           {
             home-manager = {
