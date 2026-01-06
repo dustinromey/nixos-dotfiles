@@ -70,17 +70,8 @@
   services.udisks2.enable = true;
   services.gvfs.enable = true;  # Virtual filesystem for removable media
 
-  # evremap - evdev-based key remapping service
-  systemd.services.evremap = {
-    description = "evdev key remapper";
-    wantedBy = [ "multi-user.target" ];
-    serviceConfig = {
-      Type = "simple";
-      ExecStart = "${pkgs.evremap}/bin/evremap remap /home/dustin/nixos-dotfiles/config/evremap/rk-s70.toml";
-      Restart = "always";
-      RestartSec = "1";
-    };
-  };
+  # evremap package and uinput enabled in common config
+  # Host-specific configs define the systemd service with appropriate config file
 
   # XDG Portal for file dialogs (uses KDE/Dolphin)
   xdg.portal = {
