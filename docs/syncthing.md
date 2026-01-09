@@ -55,14 +55,14 @@ This guide covers managing Syncthing devices, folders, and identities in the Rom
 │                     Git Repository                              │
 │                                                                 │
 │  secrets/syncthing/                                             │
-│  ├── mischief.yaml   ← Encrypted key.pem + cert.pem            │
-│  ├── intrepid.yaml   ← Encrypted key.pem + cert.pem            │
-│  └── vigilant.yaml   ← Encrypted key.pem + cert.pem            │
+│  ├── mischief.yaml   ← Encrypted key.pem + cert.pem             │
+│  ├── intrepid.yaml   ← Encrypted key.pem + cert.pem             │
+│  └── vigilant.yaml   ← Encrypted key.pem + cert.pem             │
 │                                                                 │
 │  hosts/common/home.nix                                          │
-│  └── services.syncthing.settings                               │
-│      ├── devices: {intrepid, vigilant, mischief}               │
-│      └── folders: {sync, code}                                 │
+│  └── services.syncthing.settings                                │
+│      ├── devices: {intrepid, vigilant, mischief}                │
+│      └── folders: {sync, code}                                  │
 └─────────────────────────────────────────────────────────────────┘
                               ↓
                       nixos-rebuild / home-manager switch
@@ -75,7 +75,7 @@ This guide covers managing Syncthing devices, folders, and identities in the Rom
 │  ├── cert.pem   ← Deployed from sops (symlink from /run/secrets)│
 │  └── config.xml ← Generated from home.nix settings              │
 │                                                                 │
-│  Syncthing service: systemctl --user status syncthing          │
+│  Syncthing service: systemctl --user status syncthing           │
 │  Web UI: http://127.0.0.1:8384                                  │
 └─────────────────────────────────────────────────────────────────┘
                               ↓

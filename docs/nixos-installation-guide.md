@@ -199,18 +199,32 @@ ping -c 3 nixos.org
 
 **For WiFi** (vigilant):
 ```bash
-# Start wpa_supplicant for WiFi
+# The NixOS minimal ISO uses wpa_supplicant, not iwd
+# So use wpa_cli or wpa_passphrase (not iwctl)
+
+# Find your wireless interface name
+ip link
+# Look for something like wlan0, wlp2s0, etc.
+
+# Option 1: Quick one-liner approach
+wpa_passphrase "YourNetworkName" "YourPassword" | sudo tee /etc/wpa_supplicant.conf
+sudo wpa_supplicant -B -i wlan0 -c /etc/wpa_supplicant.conf
+sudo dhcpcd wlan0
+
+# Option 2: Interactive wpa_cli
 sudo systemctl start wpa_supplicant
+wpa_cli
+# Inside wpa_cli:
+> scan
+> scan_results
+> add_network
+> set_network 0 ssid "YourNetworkName"
+> set_network 0 psk "YourPassword"
+> enable_network 0
+> quit
 
-# Use iwctl to connect
-iwctl
-
-# Inside iwctl:
-station wlan0 scan
-station wlan0 get-networks
-station wlan0 connect "YourNetworkName"
-# Enter password when prompted
-exit
+# Get an IP address
+sudo dhcpcd wlan0
 
 # Verify connection
 ping -c 3 nixos.org
@@ -498,8 +512,16 @@ Now configure secrets management for this host.
 On the new host (intrepid or vigilant):
 
 ```bash
+# First, ensure SSH host keys exist (they may not if openssh wasn't enabled)
+# Check if the key exists:
+ls /etc/ssh/ssh_host_ed25519_key.pub
+
+# If it doesn't exist, generate SSH host keys:
+sudo ssh-keygen -A
+
 # Extract age public key from SSH host key
-sudo cat /etc/ssh/ssh_host_ed25519_key.pub | ssh-to-age
+# (ssh-to-age may not be installed yet, use nix-shell)
+nix-shell -p ssh-to-age --run "sudo cat /etc/ssh/ssh_host_ed25519_key.pub | ssh-to-age"
 
 # Copy this output (starts with "age1...")
 ```

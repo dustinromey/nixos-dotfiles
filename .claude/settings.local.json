@@ -5,7 +5,11 @@
       "Bash(ls:*)",
       "Bash(find:*)",
       "WebFetch(domain:*)",
-      "Bash(nix flake check:*)"
+      "Bash(nix flake check:*)",
+      "Skill(run-prompt)",
+      "WebFetch(domain:github.com)",
+      "Bash(nix search:*)",
+      "WebSearch"
     ]
   }
 }
