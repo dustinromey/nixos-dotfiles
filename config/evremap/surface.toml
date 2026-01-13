@@ -1,0 +1,7 @@
+# Microsoft Surface Laptop 4 keyboard
+device_name = "Microsoft Surface 045E:09AE Keyboard"
+
+[[dual_role]]
+input = "KEY_CAPSLOCK"
+hold = ["KEY_LEFTCTRL"]
+tap = ["KEY_ESC"]
