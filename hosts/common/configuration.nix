@@ -1,4 +1,4 @@
-{ config, lib, pkgs, ... }:
+{ config, lib, pkgs, inputs, ... }:
 
 {
   # Use the systemd-boot EFI boot loader.
@@ -36,10 +36,13 @@
   # Enable uinput for evremap (key remapping)
   hardware.uinput.enable = lib.mkDefault true;
 
+  # Docker
+  virtualisation.docker.enable = lib.mkDefault true;
+
   # Define a user account. Don't forget to set a password with 'passwd'.
   users.users.dustin = {
     isNormalUser = true;
-    extraGroups = [ "wheel" "input" "uinput" ]; # Enable 'sudo' for the user.
+    extraGroups = [ "wheel" "input" "uinput" "docker" ]; # Enable 'sudo' for the user.
     packages = with pkgs; [
       tree
     ];
@@ -89,7 +92,7 @@
     wget
     git
     niri
-    ghostty
+    inputs.ghostty.packages.x86_64-linux.default  # Use flake for latest version
     brave
     kdePackages.dolphin      # File manager
     kdePackages.qtwayland    # Qt Wayland support
@@ -103,6 +106,12 @@
   ];
 
   nix.settings.experimental-features = [ "nix-command" "flakes" ];
+
+  # Create /bin/bash symlink for scripts with #!/bin/bash shebang
+  system.activationScripts.binbash = ''
+    mkdir -p /bin
+    ln -sf ${pkgs.bash}/bin/bash /bin/bash
+  '';
 
   system.stateVersion = "25.05";
 }

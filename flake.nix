@@ -17,6 +17,9 @@
     # Fresh text editor
     fresh.url = "github:sinelaw/fresh";
     fresh.inputs.nixpkgs.follows = "nixpkgs";
+
+    # Ghostty terminal (for latest version)
+    ghostty.url = "github:ghostty-org/ghostty";
   };
 
   outputs = { self, nixpkgs, home-manager, ... }@inputs:
