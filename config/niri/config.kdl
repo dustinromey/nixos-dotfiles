@@ -217,6 +217,9 @@ binds {
     // ─── Clipboard ───
     spawn-at-startup "bash" "-c" "wl-paste --watch cliphist store"
 
+    // ─── KDE Services ───
+    spawn-at-startup "kded6"  // KDE daemon for Dolphin default applications
+
     // ─── Input Method (uncomment if needed for Asian languages) ───
     // spawn-at-startup "fcitx5"
 
@@ -302,6 +305,15 @@ binds {
         open-floating true // Always float Firefox PiP windows
     }
 
+    // KDE file picker window rule (sizing and floating)
+    window-rule {
+        match app-id="org.freedesktop.impl.portal.desktop.kde"
+        default-column-width { proportion 0.5; }
+        default-window-height { proportion 0.8; }
+        open-floating true
+        open-fullscreen false
+    }
+
     window-rule {
         geometry-corner-radius 5 // Set every window radius to 20
         clip-to-geometry true
@@ -317,6 +329,13 @@ binds {
         QT_WAYLAND_DISABLE_WINDOWDECORATION "1"
         XDG_SESSION_TYPE "wayland"
         XDG_CURRENT_DESKTOP "niri"
+
+        // KDE/Qt theming for Dolphin & KDE file picker
+        QT_QPA_PLATFORMTHEME "kde"
+        XDG_MENU_PREFIX "plasma-"
+        QT_AUTO_SCREEN_SCALE_FACTOR "1"
+        QT_ENABLE_HIGHDPI_SCALING "1"
+        QT_SCALE_FACTOR_ROUNDING_POLICY "RoundPreferFloor"
 
         // for Speech To Text
         YDOTOOL_SOCKET "/tmp/.ydotool_socket"

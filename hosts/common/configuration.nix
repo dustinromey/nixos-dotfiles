@@ -42,13 +42,19 @@
   # Define a user account. Don't forget to set a password with 'passwd'.
   users.users.dustin = {
     isNormalUser = true;
-    extraGroups = [ "wheel" "input" "uinput" "docker" ]; # Enable 'sudo' for the user.
+    extraGroups = [ "wheel" "input" "uinput" "docker" "video" ]; # Enable 'sudo' for the user.
     packages = with pkgs; [
       tree
     ];
   };
 
-  programs.firefox.enable = true;
+  programs.firefox = {
+    enable = true;
+    preferences = {
+      # Use KDE file picker via xdg-desktop-portal instead of GTK
+      "widget.use-xdg-desktop-portal.file-picker" = 1;
+    };
+  };
   programs.niri.enable = true;
 
   boot.plymouth.enable = true;
@@ -69,6 +75,20 @@
     };
   };
 
+  # xwayland-satellite for rootless XWayland support (needed for niri)
+  systemd.user.services.xwayland-satellite = {
+    description = "xwayland-satellite";
+    wantedBy = [ "graphical-session.target" ];
+    wants = [ "graphical-session.target" ];
+    after = [ "graphical-session.target" ];
+    serviceConfig = {
+      Type = "simple";
+      ExecStart = "${pkgs.xwayland-satellite}/bin/xwayland-satellite";
+      Restart = "on-failure";
+      RestartSec = 1;
+    };
+  };
+
   # USB/removable drive mounting (for Dolphin)
   services.udisks2.enable = true;
   services.gvfs.enable = true;  # Virtual filesystem for removable media
@@ -76,13 +96,21 @@
   # evremap package and uinput enabled in common config
   # Host-specific configs define the systemd service with appropriate config file
 
-  # XDG Portal for file dialogs (uses KDE/Dolphin)
+  # XDG Portal for file dialogs and screen sharing
   xdg.portal = {
     enable = true;
-    extraPortals = [ pkgs.kdePackages.xdg-desktop-portal-kde ];
+    extraPortals = [
+      pkgs.kdePackages.xdg-desktop-portal-kde
+      pkgs.xdg-desktop-portal-gnome  # Required for screen capture on Niri
+    ];
     config = {
       common.default = [ "kde" ];
-      niri.default = [ "kde" ];  # Override niri's default gnome/gtk portal
+      niri = {
+        default = [ "gnome" "kde" ];
+        "org.freedesktop.impl.portal.ScreenCast" = [ "gnome" ];
+        "org.freedesktop.impl.portal.Screenshot" = [ "gnome" ];
+        "org.freedesktop.impl.portal.FileChooser" = [ "kde" ];
+      };
     };
   };
 
@@ -97,7 +125,20 @@
     kdePackages.dolphin      # File manager
     kdePackages.qtwayland    # Qt Wayland support
     kdePackages.kio-extras   # Extra protocols for Dolphin (trash, sftp, etc.)
+    kdePackages.ffmpegthumbs # Video thumbnails in Dolphin/KDE file picker
+    kdePackages.systemsettings # KDE settings (theming, icons, fonts)
+    kdePackages.breeze       # KDE Breeze theme
+    kdePackages.breeze-icons # Breeze icon theme
+    kdePackages.kded         # KDE daemon for default applications
+    kdePackages.kde-gtk-config # Sync KDE settings to GTK apps
+    kdePackages.breeze-gtk   # GTK Breeze theme for consistency
+    kdePackages.plasma-integration # Qt/KDE theming integration (lighter than plasma-workspace)
+    glib                     # Contains gsettings
+    dconf                    # Backend for gsettings
+    nwg-look                 # GTK theming GUI
     evremap                  # evdev-based key remapper (works with X11 and Wayland)
+    xwayland                 # X11 compatibility layer for Wayland
+    xwayland-satellite       # Rootless XWayland for compositors without built-in support
   ];
 
   fonts.packages = with pkgs; [
