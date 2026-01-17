@@ -114,6 +114,9 @@
     };
   };
 
+  # Disable KWallet (we don't use full Plasma, so wallet prompts are annoying)
+  environment.sessionVariables.KWALLET_DISABLED = "1";
+
   # List packages installed in system profile.
   environment.systemPackages = with pkgs; [
     vim
