@@ -1,11 +1,15 @@
-{ config, lib, pkgs, ... }:
+{ config, lib, pkgs, inputs, ... }:
 
 {
   imports = [
     ./hardware-configuration.nix
     ../common/configuration.nix
     ./secrets.nix
+    inputs.nixos-hardware.nixosModules.microsoft-surface-laptop-amd
   ];
+
+  # Enable Surface-patched kernel for better hardware support (camera, etc.)
+  hardware.microsoft-surface.kernelVersion = "longterm";
 
   networking.hostName = "vigilant";
 
@@ -28,6 +32,11 @@
     naturalScrolling = true;
     disableWhileTyping = true;
   };
+
+  # Udev rule to create symlink for RGB webcam (Surface C, not IR)
+  services.udev.extraRules = ''
+    SUBSYSTEM=="video4linux", ATTR{name}=="Surface Camera Front: Surface C", SYMLINK+="webcam", TAG+="uaccess"
+  '';
 
   # evremap - laptop config (Caps Lock -> Ctrl/Escape)
   systemd.services.evremap = {

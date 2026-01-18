@@ -39,10 +39,13 @@
   # Docker
   virtualisation.docker.enable = lib.mkDefault true;
 
+  # Android development
+  programs.adb.enable = lib.mkDefault true;
+
   # Define a user account. Don't forget to set a password with 'passwd'.
   users.users.dustin = {
     isNormalUser = true;
-    extraGroups = [ "wheel" "input" "uinput" "docker" "video" ]; # Enable 'sudo' for the user.
+    extraGroups = [ "wheel" "input" "uinput" "docker" "video" "adbusers" "kvm" ]; # Enable 'sudo' for the user.
     packages = with pkgs; [
       tree
     ];
@@ -51,7 +54,7 @@
   programs.firefox = {
     enable = true;
     preferences = {
-      # Use KDE file picker via xdg-desktop-portal instead of GTK
+      # Use GTK file picker via xdg-desktop-portal
       "widget.use-xdg-desktop-portal.file-picker" = 1;
     };
   };
@@ -61,14 +64,14 @@
 
   # Polkit authentication agent (for mounting drives, etc.)
   security.polkit.enable = true;
-  systemd.user.services.polkit-kde-authentication-agent-1 = {
-    description = "polkit-kde-authentication-agent-1";
+  systemd.user.services.polkit-gnome-authentication-agent-1 = {
+    description = "polkit-gnome-authentication-agent-1";
     wantedBy = [ "graphical-session.target" ];
     wants = [ "graphical-session.target" ];
     after = [ "graphical-session.target" ];
     serviceConfig = {
       Type = "simple";
-      ExecStart = "${pkgs.kdePackages.polkit-kde-agent-1}/libexec/polkit-kde-authentication-agent-1";
+      ExecStart = "${pkgs.polkit_gnome}/libexec/polkit-gnome-authentication-agent-1";
       Restart = "on-failure";
       RestartSec = 1;
       TimeoutStopSec = 10;
@@ -89,9 +92,10 @@
     };
   };
 
-  # USB/removable drive mounting (for Dolphin)
+  # USB/removable drive mounting (for Thunar)
   services.udisks2.enable = true;
-  services.gvfs.enable = true;  # Virtual filesystem for removable media
+  services.gvfs.enable = true;  # Virtual filesystem for removable media, trash support
+  services.tumbler.enable = true;  # Thumbnail service for Thunar
 
   # evremap package and uinput enabled in common config
   # Host-specific configs define the systemd service with appropriate config file
@@ -100,22 +104,19 @@
   xdg.portal = {
     enable = true;
     extraPortals = [
-      pkgs.kdePackages.xdg-desktop-portal-kde
+      pkgs.xdg-desktop-portal-gtk
       pkgs.xdg-desktop-portal-gnome  # Required for screen capture on Niri
     ];
     config = {
-      common.default = [ "kde" ];
+      common.default = [ "gtk" ];
       niri = {
-        default = [ "gnome" "kde" ];
+        default = [ "gnome" "gtk" ];
         "org.freedesktop.impl.portal.ScreenCast" = [ "gnome" ];
         "org.freedesktop.impl.portal.Screenshot" = [ "gnome" ];
-        "org.freedesktop.impl.portal.FileChooser" = [ "kde" ];
+        "org.freedesktop.impl.portal.FileChooser" = [ "gtk" ];
       };
     };
   };
-
-  # Disable KWallet (we don't use full Plasma, so wallet prompts are annoying)
-  environment.sessionVariables.KWALLET_DISABLED = "1";
 
   # List packages installed in system profile.
   environment.systemPackages = with pkgs; [
@@ -125,20 +126,13 @@
     niri
     inputs.ghostty.packages.x86_64-linux.default  # Use flake for latest version
     brave
-    kdePackages.dolphin      # File manager
-    kdePackages.qtwayland    # Qt Wayland support
-    kdePackages.kio-extras   # Extra protocols for Dolphin (trash, sftp, etc.)
-    kdePackages.ffmpegthumbs # Video thumbnails in Dolphin/KDE file picker
-    kdePackages.systemsettings # KDE settings (theming, icons, fonts)
-    kdePackages.breeze       # KDE Breeze theme
-    kdePackages.breeze-icons # Breeze icon theme
-    kdePackages.kded         # KDE daemon for default applications
-    kdePackages.kde-gtk-config # Sync KDE settings to GTK apps
-    kdePackages.breeze-gtk   # GTK Breeze theme for consistency
-    kdePackages.plasma-integration # Qt/KDE theming integration (lighter than plasma-workspace)
+    xfce.thunar              # File manager
+    xfce.thunar-volman       # Volume management for Thunar
+    xfce.thunar-archive-plugin  # Archive support in Thunar
     glib                     # Contains gsettings
     dconf                    # Backend for gsettings
     nwg-look                 # GTK theming GUI
+    papirus-icon-theme       # Icon theme (works well with GTK)
     evremap                  # evdev-based key remapper (works with X11 and Wayland)
     xwayland                 # X11 compatibility layer for Wayland
     xwayland-satellite       # Rootless XWayland for compositors without built-in support
@@ -150,6 +144,17 @@
   ];
 
   nix.settings.experimental-features = [ "nix-command" "flakes" ];
+
+  # Claude Code overlay
+  nixpkgs.overlays = [
+    inputs.claude-code.overlays.default
+  ];
+
+  # Allow unfree packages and accept Android SDK licenses
+  nixpkgs.config = {
+    allowUnfree = true;
+    android_sdk.accept_license = true;
+  };
 
   # Create /bin/bash symlink for scripts with #!/bin/bash shebang
   system.activationScripts.binbash = ''

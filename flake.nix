@@ -20,6 +20,9 @@
 
     # Ghostty terminal (for latest version)
     ghostty.url = "github:ghostty-org/ghostty";
+
+    # Hardware-specific configurations (includes Surface support)
+    nixos-hardware.url = "github:NixOS/nixos-hardware";
   };
 
   outputs = { self, nixpkgs, home-manager, ... }@inputs:
@@ -34,7 +37,7 @@
           home-manager.nixosModules.home-manager
           {
             home-manager = {
-              useGlobalPkgs = false;
+              useGlobalPkgs = true;
               useUserPackages = true;
               extraSpecialArgs = { inherit inputs; };
               users.dustin = import ./hosts/${hostname}/home.nix;

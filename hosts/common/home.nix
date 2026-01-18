@@ -5,6 +5,16 @@ let
   bindir = "${config.home.homeDirectory}/nixos-dotfiles/bin";
   create_symlink = path: config.lib.file.mkOutOfStoreSymlink path;
 
+  # Android SDK for React Native / Expo development
+  androidSdk = (pkgs.androidenv.composeAndroidPackages {
+    platformVersions = [ "34" "35" ];
+    buildToolsVersions = [ "34.0.0" "35.0.0" ];
+    includeEmulator = true;
+    includeSystemImages = true;
+    systemImageTypes = [ "google_apis_playstore" ];
+    abiVersions = [ "x86_64" ];
+  }).androidsdk;
+
   # Standard .config/directory
   configs = {
     qtile = "qtile";
@@ -17,22 +27,11 @@ let
     btop = "btop";
     waybar = "waybar";
     mako = "mako";
+    obs-studio = "obs-studio";
   };
 in
 
 {
-# --- Config for Claude Code & Gemini CLI ---
-  nixpkgs.overlays = [
-    inputs.claude-code.overlays.default
-  ];
-
-  nixpkgs.config.allowUnfreePredicate = pkg:
-    builtins.elem (pkgs.lib.getName pkg) [
-      "claude-code"
-      "obsidian"
-      "unrar"
-    ];
-
   # 1. Install Zed and the required Language Servers
   home.packages = with pkgs; [
     # --- Language Servers (LSPs) & Formatters ---
@@ -85,6 +84,12 @@ in
     obsidian     # Markdown notes app
     wl-clipboard # Wayland clipboard (wl-copy, wl-paste)
     cliphist     # Clipboard history manager
+    (wrapOBS {
+      plugins = with obs-studio-plugins; [
+        obs-pipewire-audio-capture
+      ];
+    })  # OBS with plugins
+    v4l-utils    # Webcam configuration tools
 
     # Niri/Wayland utilities
     swaylock-effects  # Lock screen with effects
@@ -97,11 +102,20 @@ in
     # Database tools
     pgcli            # PostgreSQL CLI with autocomplete
     pspg             # Pager for PostgreSQL
+
+    # Android / React Native development
+    androidSdk
+    jdk17
   ];
 
 
   home.username = "dustin";
   home.homeDirectory = "/home/dustin";
+
+  # Environment variables
+  home.sessionVariables = {
+    ANDROID_HOME = "${androidSdk}/libexec/android-sdk";
+  };
   programs.git = {
     enable = true;
     userName = "Dustin";
@@ -126,12 +140,46 @@ in
     size = 24;
   };
 
+  # GTK Theming (Tokyo Night for Thunar and other GTK apps)
+  gtk = {
+    enable = true;
+    theme = {
+      name = "Tokyonight-Dark";
+      package = pkgs.tokyonight-gtk-theme;
+    };
+    iconTheme = {
+      name = "Papirus-Dark";
+      package = pkgs.papirus-icon-theme;
+    };
+  };
+
   # Add gnome-keyring for Zed
   services.gnome-keyring.enable = true;
 
   # Syncthing - continuous file synchronization
   services.syncthing = {
     enable = true;
+  };
+
+  # Custom desktop entries
+  xdg.desktopEntries.files = {
+    name = "Files";
+    genericName = "File Manager";
+    exec = "thunar %U";
+    icon = "system-file-manager";
+    terminal = false;
+    categories = [ "Utility" "Core" "FileManager" ];
+    mimeType = [ "inode/directory" ];
+  };
+
+  xdg.desktopEntries.brave-browser = {
+    name = "Brave";
+    genericName = "Web Browser";
+    exec = "brave --password-store=basic %U";
+    icon = "brave-browser";
+    terminal = false;
+    categories = [ "Network" "WebBrowser" ];
+    mimeType = [ "text/html" "text/xml" "application/xhtml+xml" "x-scheme-handler/http" "x-scheme-handler/https" ];
   };
 
 # Load config files for list from top of file
