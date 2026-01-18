@@ -1,3 +1,4 @@
+
 # NixOS Installation Guide for Intrepid and Vigilant
 
 This guide covers installing NixOS on the `intrepid` (desktop) and `vigilant` (Surface Laptop 4) hosts, then migrating to this dotfiles configuration. Both hosts are currently running Arch Linux and need to be completely reinstalled with NixOS.
