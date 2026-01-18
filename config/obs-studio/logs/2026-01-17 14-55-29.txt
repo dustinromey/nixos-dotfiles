@@ -1,0 +1,348 @@
+14:55:29.538: Platform: Wayland
+14:55:29.538: CPU Name: AMD Ryzen 7 Microsoft Surface (R) Edition
+14:55:29.538: CPU Speed: 2136.476MHz
+14:55:29.539: Physical Cores: 8, Logical Cores: 16
+14:55:29.539: Physical Memory: 15438MB Total, 8226MB Free
+14:55:29.539: Kernel Version: Linux 6.12.63
+14:55:29.539: Distribution: NixOS "25.05"
+14:55:29.539: Desktop Environment: niri (niri)
+14:55:29.539: Session Type: wayland
+14:55:29.541: Qt Version: 6.9.3 (runtime), 6.9.3 (compiled)
+14:55:29.541: Portable mode: false
+14:55:29.568: OBS 31.0.4 (linux)
+14:55:29.568: ---------------------------------
+14:55:29.569: ---------------------------------
+14:55:29.569: audio settings reset:
+14:55:29.569: 	samples per sec: 48000
+14:55:29.569: 	speakers:        2
+14:55:29.569: 	max buffering:   960 milliseconds
+14:55:29.569: 	buffering type:  dynamically increasing
+14:55:29.570: ---------------------------------
+14:55:29.570: Initializing OpenGL...
+14:55:29.570: Using EGL/Wayland
+14:55:29.617: Initialized EGL 1.5
+14:55:29.633: Loading up OpenGL on adapter AMD AMD Radeon Graphics (radeonsi, renoir, ACO, DRM 3.61, 6.12.63)
+14:55:29.633: OpenGL loaded successfully, version 4.6 (Core Profile) Mesa 25.0.7, shading language 4.60
+14:55:29.665: ---------------------------------
+14:55:29.665: video settings reset:
+14:55:29.665: 	base resolution:   1920x1080
+14:55:29.665: 	output resolution: 1280x720
+14:55:29.665: 	downscale filter:  Bicubic
+14:55:29.665: 	fps:               30/1
+14:55:29.665: 	format:            NV12
+14:55:29.665: 	YUV mode:          Rec. 709/Partial
+14:55:29.665: NV12 texture support enabled
+14:55:29.665: P010 texture support not available
+14:55:29.670: Audio monitoring device:
+14:55:29.670: 	name: Default
+14:55:29.670: 	id: default
+14:55:29.670: ---------------------------------
+14:55:29.680: Failed to load 'en-US' text for module: 'decklink-captions.so'
+14:55:29.692: Failed to load 'en-US' text for module: 'decklink-output-ui.so'
+14:55:29.701: A DeckLink iterator could not be created.  The DeckLink drivers may not be installed
+14:55:29.701: Failed to initialize module 'decklink.so'
+14:55:29.978: [pipewire] Available capture sources:
+14:55:29.978: [pipewire]     - Monitor source
+14:55:29.978: [pipewire]     - Window source
+14:55:30.013: v4l2loopback not installed, virtual camera not registered
+14:55:30.028: [obs-browser]: Version 2.24.6
+14:55:30.028: [obs-browser]: CEF Version 127.0.6533.120 (runtime), 127.3.5+g114ea2a+chromium-127.0.6533.120 (compiled)
+14:55:30.052: VAAPI: API version 1.22
+14:55:30.053: FFmpeg VAAPI H264 encoding supported
+14:55:30.058: FFmpeg VAAPI AV1 encoding not supported
+14:55:30.063: FFmpeg VAAPI HEVC encoding supported
+14:55:30.108: os_dlopen(libnvidia-encode.so.1->libnvidia-encode.so.1): libnvidia-encode.so.1: cannot open shared object file: No such file or directory
+14:55:30.108: 
+14:55:30.108: NVENC not supported
+14:55:30.108: Failed to initialize module 'obs-nvenc.so'
+14:55:30.219: [obs-websocket] [obs_module_load] you can haz websockets (Version: 5.5.6 | RPC Version: 1)
+14:55:30.219: [obs-websocket] [obs_module_load] Qt version (compile-time): 6.9.3 | Qt version (run-time): 6.9.3
+14:55:30.219: [obs-websocket] [obs_module_load] Linked ASIO Version: 102400
+14:55:30.220: DEPRECATION: obs_frontend_get_global_config is deprecated. Read from global or user configuration explicitly instead.
+14:55:30.224: [obs-websocket] [obs_module_load] Module loaded.
+14:55:30.279: [vlc-video]: VLC 3.0.21 Vetinari found, VLC video source enabled
+14:55:30.279: ---------------------------------
+14:55:30.279:   Loaded Modules:
+14:55:30.279:     vlc-video.so
+14:55:30.279:     text-freetype2.so
+14:55:30.279:     rtmp-services.so
+14:55:30.279:     obs-x264.so
+14:55:30.279:     obs-websocket.so
+14:55:30.279:     obs-webrtc.so
+14:55:30.279:     obs-vst.so
+14:55:30.279:     obs-transitions.so
+14:55:30.279:     obs-qsv11.so
+14:55:30.279:     obs-outputs.so
+14:55:30.279:     obs-libfdk.so
+14:55:30.279:     obs-filters.so
+14:55:30.279:     obs-ffmpeg.so
+14:55:30.279:     obs-browser.so
+14:55:30.279:     linux-v4l2.so
+14:55:30.279:     linux-pulseaudio.so
+14:55:30.279:     linux-pipewire.so
+14:55:30.279:     linux-jack.so
+14:55:30.279:     linux-capture.so
+14:55:30.279:     linux-alsa.so
+14:55:30.279:     image-source.so
+14:55:30.279:     frontend-tools.so
+14:55:30.279:     decklink-output-ui.so
+14:55:30.279:     decklink-captions.so
+14:55:30.279: ---------------------------------
+14:55:30.279: ---------------------------------
+14:55:30.279: Available Encoders:
+14:55:30.279:   Video Encoders:
+14:55:30.279: 	- ffmpeg_svt_av1 (SVT-AV1)
+14:55:30.279: 	- ffmpeg_aom_av1 (AOM AV1)
+14:55:30.279: 	- ffmpeg_vaapi_tex (FFmpeg VAAPI H.264)
+14:55:30.279: 	- hevc_ffmpeg_vaapi_tex (FFmpeg VAAPI HEVC)
+14:55:30.279: 	- obs_x264 (x264)
+14:55:30.279:   Audio Encoders:
+14:55:30.279: 	- ffmpeg_aac (FFmpeg AAC)
+14:55:30.279: 	- ffmpeg_opus (FFmpeg Opus)
+14:55:30.279: 	- ffmpeg_pcm_s16le (FFmpeg PCM (16-bit))
+14:55:30.279: 	- ffmpeg_pcm_s24le (FFmpeg PCM (24-bit))
+14:55:30.279: 	- ffmpeg_pcm_f32le (FFmpeg PCM (32-bit float))
+14:55:30.279: 	- ffmpeg_alac (FFmpeg ALAC (24-bit))
+14:55:30.280: 	- ffmpeg_flac (FFmpeg FLAC (16-bit))
+14:55:30.280: 	- libfdk_aac (libfdk AAC)
+14:55:30.280: ==== Startup complete ===============================================
+14:55:30.318: All scene data cleared
+14:55:30.318: ------------------------------------------------
+14:55:30.324: pulse-input: Server name: 'PulseAudio (on PipeWire 1.4.7) 15.0.0'
+14:55:30.325: pulse-input: Audio format: s32le, 48000 Hz, 2 channels
+14:55:30.325: pulse-input: Started recording from 'alsa_output.pci-0000_03_00.6.analog-stereo.monitor' (default)
+14:55:30.325: [Loaded global audio device]: 'Desktop Audio'
+14:55:30.325: pulse-input: Server name: 'PulseAudio (on PipeWire 1.4.7) 15.0.0'
+14:55:30.325: pulse-input: Audio format: s32le, 48000 Hz, 2 channels
+14:55:30.325: pulse-input: Started recording from 'alsa_input.pci-0000_03_00.6.analog-stereo' (default)
+14:55:30.325: [Loaded global audio device]: 'Mic/Aux'
+14:55:30.326: PipeWire initialized
+14:55:30.326: v4l2-input: Start capture from 
+14:55:30.326: v4l2-input: Unable to open device
+14:55:30.326: v4l2-input: Initialization failed, errno: No such file or directory
+14:55:30.327: Switched to scene 'Scene'
+14:55:30.327: ------------------------------------------------
+14:55:30.327: Loaded scenes:
+14:55:30.327: - scene 'Scene':
+14:55:30.327:     - source: 'Screen Capture (PipeWire)' (pipewire-screen-capture-source)
+14:55:30.327:     - source: 'Video Capture Device (V4L2)' (v4l2_input)
+14:55:30.327: ------------------------------------------------
+14:55:30.428: [pipewire] Screencast session created
+14:55:30.474: [pipewire] Asking for monitor and window
+14:55:30.498: [pipewire] source selected, setting up screencast
+14:55:30.505: [pipewire] Server version: 1.4.7
+14:55:30.505: [pipewire] Library version: 1.4.7
+14:55:30.505: [pipewire] Header version: 1.4.7
+14:55:30.505: [pipewire] Created stream 0xc5a5960
+14:55:30.505: [pipewire] Stream 0xc5a5960 state: "connecting" (error: none)
+14:55:30.506: [pipewire] Playing stream 0xc5a5960
+14:55:30.525: [pipewire] Stream 0xc5a5960 state: "paused" (error: none)
+14:55:30.526: [pipewire] Negotiated format:
+14:55:30.526: [pipewire]     Format: 8 (Spa:Enum:VideoFormat:BGRx)
+14:55:30.526: [pipewire]     Modifier: 0x0
+14:55:30.526: [pipewire]     Size: 2496x1664
+14:55:30.526: [pipewire]     Framerate: 0/1
+14:55:30.526: [pipewire] Negotiated format:
+14:55:30.526: [pipewire]     Format: 8 (Spa:Enum:VideoFormat:BGRx)
+14:55:30.526: [pipewire]     Modifier: 0x20000044051ba01
+14:55:30.526: [pipewire]     Size: 2496x1664
+14:55:30.526: [pipewire]     Framerate: 0/1
+14:55:30.530: [pipewire] Stream 0xc5a5960 state: "streaming" (error: none)
+14:55:30.892: adding 42 milliseconds of audio buffering, total audio buffering is now 42 milliseconds (source: Desktop Audio)
+14:55:30.892: 
+14:55:34.560: v4l2-input: /dev/video3 seems to not support video capture
+14:55:34.560: v4l2-input: /dev/video1 seems to not support video capture
+14:55:34.561: v4l2-input: Found device 'Surface Camera Front: Surface I' at /dev/video2
+14:55:34.561: v4l2-input: Found device 'Surface Camera Front: Surface C' at /dev/video0
+14:55:34.563: v4l2-input: Found input 'Camera 8' (Index 0)
+14:55:34.563: v4l2-controls: setting default for Auto Exposure to 0
+14:55:34.563: v4l2-input: Pixelformat: 8-bit Greyscale (unavailable)
+14:55:34.563: v4l2-input: Pixelformat: RGB3 (Emulated) (unavailable)
+14:55:34.563: v4l2-input: Pixelformat: BGR3 (Emulated) (available)
+14:55:34.563: v4l2-input: Pixelformat: YU12 (Emulated) (available)
+14:55:34.563: v4l2-input: Pixelformat: YV12 (Emulated) (available)
+14:55:34.563: v4l2-input: Stepwise and Continuous framesizes are currently hardcoded
+14:55:34.564: v4l2-input: Stepwise and Continuous framerates are currently hardcoded
+14:55:34.565: v4l2-input: Pixelformat: 8-bit Greyscale (unavailable)
+14:55:34.565: v4l2-input: Pixelformat: RGB3 (Emulated) (unavailable)
+14:55:34.565: v4l2-input: Pixelformat: BGR3 (Emulated) (available)
+14:55:34.565: v4l2-input: Pixelformat: YU12 (Emulated) (available)
+14:55:34.565: v4l2-input: Pixelformat: YV12 (Emulated) (available)
+14:55:34.566: v4l2-input: Stepwise and Continuous framesizes are currently hardcoded
+14:55:34.566: v4l2-input: Stepwise and Continuous framerates are currently hardcoded
+14:55:34.568: v4l2-input: Stepwise and Continuous framerates are currently hardcoded
+14:55:34.570: v4l2-input: Start capture from /dev/video2
+14:55:34.571: v4l2-input: Input: 0
+14:55:34.574: v4l2-input: Resolution: 480x480
+14:55:34.574: v4l2-input: Pixelformat: BGR3
+14:55:34.574: v4l2-input: Linesize: 1440 Bytes
+14:55:34.574: v4l2-input: Framerate: 60.00 fps
+14:55:34.575: v4l2-input: /dev/video2: select timeout set to 83333 (5x frame periods)
+14:55:34.635: virtual void QtWaylandClient::QWaylandTextInputv3::disableSurface(wl_surface*) Try to disable surface 0xc6209f0 with focusing surface 0xcb1c9e0
+14:55:40.962: v4l2-input: Found input 'Camera 1' (Index 0)
+14:55:40.962: v4l2-controls: setting default for Power Line Frequency to 3
+14:55:40.962: v4l2-controls: setting default for Auto Exposure to 0
+14:55:40.962: v4l2-input: Pixelformat: Motion-JPEG (available)
+14:55:40.962: v4l2-input: Pixelformat: YUYV 4:2:2 (available)
+14:55:40.962: v4l2-input: Pixelformat: RGB3 (Emulated) (unavailable)
+14:55:40.962: v4l2-input: Pixelformat: BGR3 (Emulated) (available)
+14:55:40.962: v4l2-input: Pixelformat: YU12 (Emulated) (available)
+14:55:40.962: v4l2-input: Pixelformat: YV12 (Emulated) (available)
+14:55:40.963: v4l2-input: Stepwise and Continuous framerates are currently hardcoded
+14:55:40.985: v4l2-input: /dev/video2: Stopped capture after 379 frames
+14:55:41.068: v4l2-input: Start capture from /dev/video0
+14:55:41.069: v4l2-input: Unable to set input 0
+14:55:41.069: v4l2-input: Initialization failed, errno: Device or resource busy
+14:55:47.731: v4l2-input: Stepwise and Continuous framerates are currently hardcoded
+14:55:47.737: v4l2-input: Start capture from /dev/video0
+14:55:47.737: v4l2-input: Unable to set input 0
+14:55:47.737: v4l2-input: Initialization failed, errno: Device or resource busy
+14:56:00.737: v4l2-input: Start capture from 
+14:56:00.737: v4l2-input: Unable to open device
+14:56:00.737: v4l2-input: Initialization failed, errno: No such file or directory
+14:56:02.984: virtual void QtWaylandClient::QWaylandTextInputv3::disableSurface(wl_surface*) Try to disable surface 0xc19ade0 with focusing surface 0xcb1c9e0
+14:56:04.521: User Removed source 'Video Capture Device (V4L2)' (v4l2_input) from scene 'Scene'
+14:56:15.495: virtual void QtWaylandClient::QWaylandTextInputv3::enableSurface(wl_surface*) Try to enable surface 0xc48d470 with focusing surface 0xcb1c9e0
+14:56:16.721: obs-data.c: [obs_data_create_from_json] Failed reading json string (1): '[' or '{' expected near end of file
+14:56:16.722: obs-data.c: [obs_data_create_from_json] Failed reading json string (1): '[' or '{' expected near end of file
+14:56:16.725: User added source 'Video Capture Device (PipeWire) (BETA)' (pipewire-camera-source) to scene 'Scene'
+14:56:16.743: [camera-portal] Selected resolution for ''
+14:56:16.743: [camera-portal] Selected format for ''
+14:56:16.743: [camera-portal] selected camera ''
+14:56:16.748: virtual void QtWaylandClient::QWaylandTextInputv3::disableSurface(wl_surface*) Try to disable surface 0xc7912c0 with focusing surface 0xcb1c9e0
+14:56:16.765: [camera-portal] Failed to create session, denied or cancelled by user
+14:56:20.603: [camera-portal] Updating device 
+14:56:24.708: virtual void QtWaylandClient::QWaylandTextInputv3::disableSurface(wl_surface*) Try to disable surface 0xc7b3250 with focusing surface 0xcb1c9e0
+14:56:26.117: User Removed source 'Video Capture Device (PipeWire) (BETA)' (pipewire-camera-source) from scene 'Scene'
+14:56:31.179: virtual void QtWaylandClient::QWaylandTextInputv3::enableSurface(wl_surface*) Try to enable surface 0xadde830 with focusing surface 0xcb1c9e0
+14:56:32.795: v4l2-input: Start capture from 
+14:56:32.796: v4l2-input: Unable to open device
+14:56:32.796: v4l2-input: Initialization failed, errno: No such file or directory
+14:56:32.798: User added source 'Video Capture Device (V4L2)' (v4l2_input) to scene 'Scene'
+14:56:32.816: v4l2-input: /dev/video3 seems to not support video capture
+14:56:32.817: v4l2-input: /dev/video1 seems to not support video capture
+14:56:32.817: v4l2-input: Found device 'Surface Camera Front: Surface I' at /dev/video2
+14:56:32.817: v4l2-input: Found device 'Surface Camera Front: Surface C' at /dev/video0
+14:56:32.819: v4l2-input: Found input 'Camera 8' (Index 0)
+14:56:32.819: v4l2-controls: setting default for Auto Exposure to 0
+14:56:32.819: v4l2-input: Pixelformat: 8-bit Greyscale (unavailable)
+14:56:32.819: v4l2-input: Pixelformat: RGB3 (Emulated) (unavailable)
+14:56:32.819: v4l2-input: Pixelformat: BGR3 (Emulated) (available)
+14:56:32.819: v4l2-input: Pixelformat: YU12 (Emulated) (available)
+14:56:32.819: v4l2-input: Pixelformat: YV12 (Emulated) (available)
+14:56:32.820: v4l2-input: Stepwise and Continuous framesizes are currently hardcoded
+14:56:32.820: v4l2-input: Stepwise and Continuous framerates are currently hardcoded
+14:56:32.821: v4l2-input: Pixelformat: 8-bit Greyscale (unavailable)
+14:56:32.821: v4l2-input: Pixelformat: RGB3 (Emulated) (unavailable)
+14:56:32.821: v4l2-input: Pixelformat: BGR3 (Emulated) (available)
+14:56:32.822: v4l2-input: Pixelformat: YU12 (Emulated) (available)
+14:56:32.822: v4l2-input: Pixelformat: YV12 (Emulated) (available)
+14:56:32.822: v4l2-input: Stepwise and Continuous framesizes are currently hardcoded
+14:56:32.823: v4l2-input: Stepwise and Continuous framerates are currently hardcoded
+14:56:32.825: v4l2-input: Stepwise and Continuous framerates are currently hardcoded
+14:56:32.836: virtual void QtWaylandClient::QWaylandTextInputv3::disableSurface(wl_surface*) Try to disable surface 0xc6958b0 with focusing surface 0xcb1c9e0
+14:56:32.837: v4l2-input: Start capture from /dev/video2
+14:56:32.838: v4l2-input: Input: 0
+14:56:32.841: v4l2-input: Resolution: 480x480
+14:56:32.841: v4l2-input: Pixelformat: BGR3
+14:56:32.841: v4l2-input: Linesize: 1440 Bytes
+14:56:32.841: v4l2-input: Framerate: 60.00 fps
+14:56:32.842: v4l2-input: /dev/video2: select timeout set to 83333 (5x frame periods)
+14:59:33.211: v4l2-input: /dev/video2: Stopped capture after 10828 frames
+14:59:33.300: v4l2-input: Start capture from 
+14:59:33.300: v4l2-input: Unable to open device
+14:59:33.300: v4l2-input: Initialization failed, errno: No such file or directory
+14:59:35.418: virtual void QtWaylandClient::QWaylandTextInputv3::disableSurface(wl_surface*) Try to disable surface 0xcb21c00 with focusing surface 0xcb1c9e0
+14:59:36.773: User Removed source 'Video Capture Device (V4L2)' (v4l2_input) from scene 'Scene'
+14:59:41.049: virtual void QtWaylandClient::QWaylandTextInputv3::disableSurface(wl_surface*) Try to disable surface 0xcb14740 with focusing surface 0xcb1c9e0
+14:59:43.153: virtual void QtWaylandClient::QWaylandTextInputv3::enableSurface(wl_surface*) Try to enable surface 0xc1276a0 with focusing surface 0xcb1c9e0
+14:59:44.550: v4l2-input: Start capture from 
+14:59:44.550: v4l2-input: Unable to open device
+14:59:44.550: v4l2-input: Initialization failed, errno: No such file or directory
+14:59:44.552: User added source 'Video Capture Device (V4L2)' (v4l2_input) to scene 'Scene'
+14:59:44.560: virtual void QtWaylandClient::QWaylandTextInputv3::enableSurface(wl_surface*) Try to enable surface 0xcb1c9e0 with focusing surface 0xc1276a0
+14:59:44.572: v4l2-input: /dev/video3 seems to not support video capture
+14:59:44.572: v4l2-input: /dev/video1 seems to not support video capture
+14:59:44.573: v4l2-input: Found device 'Surface Camera Front: Surface I' at /dev/video2
+14:59:44.573: v4l2-input: Found device 'Surface Camera Front: Surface C' at /dev/video0
+14:59:44.575: v4l2-input: Found input 'Camera 8' (Index 0)
+14:59:44.575: v4l2-controls: setting default for Auto Exposure to 0
+14:59:44.576: v4l2-input: Pixelformat: 8-bit Greyscale (unavailable)
+14:59:44.576: v4l2-input: Pixelformat: RGB3 (Emulated) (unavailable)
+14:59:44.576: v4l2-input: Pixelformat: BGR3 (Emulated) (available)
+14:59:44.576: v4l2-input: Pixelformat: YU12 (Emulated) (available)
+14:59:44.576: v4l2-input: Pixelformat: YV12 (Emulated) (available)
+14:59:44.577: v4l2-input: Stepwise and Continuous framesizes are currently hardcoded
+14:59:44.577: v4l2-input: Stepwise and Continuous framerates are currently hardcoded
+14:59:44.580: v4l2-input: Pixelformat: 8-bit Greyscale (unavailable)
+14:59:44.580: v4l2-input: Pixelformat: RGB3 (Emulated) (unavailable)
+14:59:44.580: v4l2-input: Pixelformat: BGR3 (Emulated) (available)
+14:59:44.580: v4l2-input: Pixelformat: YU12 (Emulated) (available)
+14:59:44.580: v4l2-input: Pixelformat: YV12 (Emulated) (available)
+14:59:44.581: v4l2-input: Stepwise and Continuous framesizes are currently hardcoded
+14:59:44.583: v4l2-input: Stepwise and Continuous framerates are currently hardcoded
+14:59:44.587: v4l2-input: Stepwise and Continuous framerates are currently hardcoded
+14:59:44.597: virtual void QtWaylandClient::QWaylandTextInputv3::disableSurface(wl_surface*) Try to disable surface 0xc657960 with focusing surface 0xcb1c9e0
+14:59:44.603: v4l2-input: Start capture from /dev/video2
+14:59:44.605: v4l2-input: Input: 0
+14:59:44.608: v4l2-input: Resolution: 480x480
+14:59:44.608: v4l2-input: Pixelformat: BGR3
+14:59:44.608: v4l2-input: Linesize: 1440 Bytes
+14:59:44.608: v4l2-input: Framerate: 60.00 fps
+14:59:44.609: v4l2-input: /dev/video2: select timeout set to 83333 (5x frame periods)
+15:02:34.571: v4l2-input: /dev/video2: Stopped capture after 10203 frames
+15:02:34.672: v4l2-input: Start capture from 
+15:02:34.672: v4l2-input: Unable to open device
+15:02:34.672: v4l2-input: Initialization failed, errno: No such file or directory
+15:02:59.907: virtual void QtWaylandClient::QWaylandTextInputv3::disableSurface(wl_surface*) Try to disable surface 0xcb03c10 with focusing surface 0xcb1c9e0
+15:03:01.068: User Removed source 'Video Capture Device (V4L2)' (v4l2_input) from scene 'Scene'
+15:03:12.584: virtual void QtWaylandClient::QWaylandTextInputv3::enableSurface(wl_surface*) Try to enable surface 0xc88cbc0 with focusing surface 0xcb1c9e0
+15:03:14.418: v4l2-input: Start capture from 
+15:03:14.418: v4l2-input: Unable to open device
+15:03:14.418: v4l2-input: Initialization failed, errno: No such file or directory
+15:03:14.420: User added source 'Video Capture Device (V4L2)' (v4l2_input) to scene 'Scene'
+15:03:14.439: v4l2-input: /dev/video3 seems to not support video capture
+15:03:14.439: v4l2-input: /dev/video1 seems to not support video capture
+15:03:14.533: v4l2-input: Found device 'Surface Camera Front: Surface I' at /dev/video2
+15:03:14.533: v4l2-input: Found device 'Surface Camera Front: Surface C' at /dev/video0
+15:03:14.535: v4l2-input: Found input 'Camera 8' (Index 0)
+15:03:14.535: v4l2-controls: setting default for Auto Exposure to 0
+15:03:14.535: v4l2-input: Pixelformat: 8-bit Greyscale (unavailable)
+15:03:14.535: v4l2-input: Pixelformat: RGB3 (Emulated) (unavailable)
+15:03:14.535: v4l2-input: Pixelformat: BGR3 (Emulated) (available)
+15:03:14.535: v4l2-input: Pixelformat: YU12 (Emulated) (available)
+15:03:14.535: v4l2-input: Pixelformat: YV12 (Emulated) (available)
+15:03:14.535: v4l2-input: Stepwise and Continuous framesizes are currently hardcoded
+15:03:14.536: v4l2-input: Stepwise and Continuous framerates are currently hardcoded
+15:03:14.537: v4l2-input: Start capture from /dev/video2
+15:03:14.537: v4l2-input: Pixelformat: 8-bit Greyscale (unavailable)
+15:03:14.537: v4l2-input: Pixelformat: RGB3 (Emulated) (unavailable)
+15:03:14.537: v4l2-input: Pixelformat: BGR3 (Emulated) (available)
+15:03:14.537: v4l2-input: Pixelformat: YU12 (Emulated) (available)
+15:03:14.537: v4l2-input: Pixelformat: YV12 (Emulated) (available)
+15:03:14.537: v4l2-input: Input: 0
+15:03:14.538: v4l2-input: Selected video format not supported
+15:03:14.538: v4l2-input: Initialization failed, errno: Invalid argument
+15:03:14.538: v4l2-input: Stepwise and Continuous framesizes are currently hardcoded
+15:03:14.538: v4l2-input: Stepwise and Continuous framerates are currently hardcoded
+15:03:14.541: v4l2-input: Stepwise and Continuous framerates are currently hardcoded
+15:03:14.550: virtual void QtWaylandClient::QWaylandTextInputv3::disableSurface(wl_surface*) Try to disable surface 0xcd1e8a0 with focusing surface 0xcb1c9e0
+15:03:14.570: v4l2-input: Start capture from /dev/video2
+15:03:14.571: v4l2-input: Input: 0
+15:03:14.575: v4l2-input: Resolution: 480x480
+15:03:14.575: v4l2-input: Pixelformat: BGR3
+15:03:14.575: v4l2-input: Linesize: 1440 Bytes
+15:03:14.575: v4l2-input: Framerate: 60.00 fps
+15:03:14.575: v4l2-input: /dev/video2: select timeout set to 83333 (5x frame periods)
+15:03:27.085: virtual void QtWaylandClient::QWaylandTextInputv3::disableSurface(wl_surface*) Try to disable surface 0xcd1e8a0 with focusing surface 0xc7c8cf0
+15:07:07.852: v4l2-input: /dev/video2: Stopped capture after 14006 frames
+15:07:07.888: v4l2-input: Start capture from 
+15:07:07.888: v4l2-input: Unable to open device
+15:07:07.888: v4l2-input: Initialization failed, errno: No such file or directory
+15:07:09.446: virtual void QtWaylandClient::QWaylandTextInputv3::disableSurface(wl_surface*) Try to disable surface 0xcd094d0 with focusing surface 0xcb1c9e0
+15:07:10.752: User Removed source 'Video Capture Device (V4L2)' (v4l2_input) from scene 'Scene'
+15:07:17.847: virtual void QtWaylandClient::QWaylandTextInputv3::enableSurface(wl_surface*) Try to enable surface 0xc693950 with focusing surface 0xcb1c9e0
+15:07:19.256: alsa-input: PCM 'default' rate set to 44100
+15:07:19.256: alsa-input: PCM 'default' channels set to 2
+15:07:19.277: User added source 'Audio Capture Device (ALSA)' (alsa_input_capture) to scene 'Scene'
+15:07:19.325: virtual void QtWaylandClient::QWaylandTextInputv3::disableSurface(wl_surface*) Try to disable surface 0xc8c2180 with focusing surface 0xcb1c9e0
