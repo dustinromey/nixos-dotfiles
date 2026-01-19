@@ -153,6 +153,9 @@ in
     };
   };
 
+  # Enable dconf (required for GTK theme settings to persist)
+  dconf.enable = true;
+
   # Add gnome-keyring for Zed
   services.gnome-keyring.enable = true;
 

@@ -9,7 +9,9 @@
       "Skill(run-prompt)",
       "WebFetch(domain:github.com)",
       "Bash(nix search:*)",
-      "WebSearch"
+      "WebSearch",
+      "Bash(gsettings get:*)",
+      "Bash(echo:*)"
     ]
   }
 }
