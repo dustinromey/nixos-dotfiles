@@ -90,6 +90,7 @@ in
       ];
     })  # OBS with plugins
     v4l-utils    # Webcam configuration tools
+    mpv          # Video player
 
     # Niri/Wayland utilities
     swaylock-effects  # Lock screen with effects
