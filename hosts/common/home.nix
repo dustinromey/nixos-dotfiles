@@ -71,6 +71,7 @@ in
     nil
     nixpkgs-fmt
     nodejs_22
+    python3
     gcc
     rofi-wayland  # Works on both X11 (Qtile) and Wayland (Niri)
     zed-editor
@@ -107,6 +108,8 @@ in
     # Android / React Native development
     androidSdk
     jdk17
+    eas-cli
+    watchman
   ];
 
 
@@ -116,6 +119,7 @@ in
   # Environment variables
   home.sessionVariables = {
     ANDROID_HOME = "${androidSdk}/libexec/android-sdk";
+    TERMINAL = "ghostty";
   };
   programs.git = {
     enable = true;
@@ -184,6 +188,23 @@ in
     terminal = false;
     categories = [ "Network" "WebBrowser" ];
     mimeType = [ "text/html" "text/xml" "application/xhtml+xml" "x-scheme-handler/http" "x-scheme-handler/https" ];
+  };
+
+  xdg.desktopEntries.ghostty = {
+    name = "Ghostty";
+    genericName = "Terminal Emulator";
+    exec = "ghostty";
+    icon = "ghostty";
+    terminal = false;
+    categories = [ "System" "TerminalEmulator" ];
+  };
+
+  # Set default applications
+  xdg.mimeApps = {
+    enable = true;
+    defaultApplications = {
+      "x-scheme-handler/terminal" = [ "ghostty.desktop" ];
+    };
   };
 
 # Load config files for list from top of file
