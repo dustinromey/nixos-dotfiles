@@ -13,10 +13,16 @@
 
   networking.hostName = "vigilant";
 
-  # AMD GPU support
+  # AMD GPU support with Vulkan (for whisper.cpp acceleration)
   hardware.graphics.enable = true;
   hardware.graphics.extraPackages = with pkgs; [
     amdvlk
+    vulkan-loader
+  ];
+
+  # Vulkan debugging tools
+  environment.systemPackages = with pkgs; [
+    vulkan-tools
   ];
 
   # Optional: Force AMD Vulkan driver
