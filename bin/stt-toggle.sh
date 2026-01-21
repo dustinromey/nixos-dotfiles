@@ -6,6 +6,9 @@
 
 set -euo pipefail
 
+# ydotool socket location (NixOS default)
+export YDOTOOL_SOCKET="${YDOTOOL_SOCKET:-/run/user/$(id -u)/.ydotool_socket}"
+
 LOCK_FILE="/tmp/waystt-recording"
 ROFI_THEME="${XDG_CONFIG_HOME:-$HOME/.config}/rofi/stt.rasi"
 MODE="${1:-type}"
