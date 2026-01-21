@@ -14,7 +14,11 @@
   hardware.graphics.extraPackages = with pkgs; [
     amdvlk
     vulkan-loader
-    vulkan-tools  # vulkaninfo for debugging
+  ];
+
+  # Vulkan debugging tools
+  environment.systemPackages = with pkgs; [
+    vulkan-tools
   ];
 
   # Optional: Force AMD Vulkan driver
