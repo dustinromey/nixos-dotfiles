@@ -42,6 +42,9 @@
   # Android development
   programs.adb.enable = lib.mkDefault true;
 
+  # ydotool for keyboard/mouse automation (used by waystt)
+  programs.ydotool.enable = lib.mkDefault true;
+
   # Define a user account. Don't forget to set a password with 'passwd'.
   users.users.dustin = {
     isNormalUser = true;
@@ -136,6 +139,7 @@
     evremap                  # evdev-based key remapper (works with X11 and Wayland)
     xwayland                 # X11 compatibility layer for Wayland
     xwayland-satellite       # Rootless XWayland for compositors without built-in support
+    waystt                   # Wayland speech-to-text
   ];
 
   fonts.packages = with pkgs; [

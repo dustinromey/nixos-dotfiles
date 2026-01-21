@@ -60,6 +60,7 @@ in
     neovim
     bat              # cat replacement with syntax highlighting
     ripgrep
+    jq               # JSON processor
     curl             # HTTP client
     # Archive tools (for extract function)
     unzip
@@ -84,6 +85,7 @@ in
     bluetui      # Bluetooth TUI
     obsidian     # Markdown notes app
     wl-clipboard # Wayland clipboard (wl-copy, wl-paste)
+    xclip        # X11 clipboard
     cliphist     # Clipboard history manager
     (wrapOBS {
       plugins = with obs-studio-plugins; [
@@ -98,6 +100,7 @@ in
     swayosd          # On-screen display for volume/brightness
     swww             # Wallpaper daemon
     mako             # Notification daemon
+    libnotify        # notify-send command (for STT notifications)
     playerctl        # Media player control
     brightnessctl    # Brightness control
 

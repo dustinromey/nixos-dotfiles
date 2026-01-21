@@ -1,0 +1,66 @@
+/*
+ * STT Recording Popup - Tokyo Night theme
+ * Minimal centered popup for speech-to-text feedback
+ */
+
+* {
+    bg: #24283b;
+    fg: #c0caf5;
+    accent: #f7768e;
+    primary: #444b6a;
+    font: "Hack Nerd Font 12";
+    background-color: @bg;
+    border: 0px;
+}
+
+window {
+    width: 300px;
+    location: center;
+    anchor: center;
+    transparency: "real";
+    border: 2px solid;
+    border-color: @accent;
+    border-radius: 12px;
+}
+
+mainbox {
+    background-color: transparent;
+    children: [ inputbar, listview ];
+}
+
+inputbar {
+    padding: 16px;
+    background-color: @accent;
+    border-radius: 10px 10px 0 0;
+    children: [ prompt ];
+}
+
+prompt {
+    background-color: transparent;
+    text-color: @bg;
+    font: "Hack Nerd Font Bold 14";
+}
+
+listview {
+    lines: 2;
+    padding: 8px;
+    background-color: transparent;
+    scrollbar: false;
+}
+
+element {
+    padding: 12px;
+    border-radius: 6px;
+    background-color: transparent;
+    text-color: @fg;
+}
+
+element-text {
+    background-color: transparent;
+    text-color: inherit;
+}
+
+element selected {
+    background-color: @primary;
+    text-color: @fg;
+}

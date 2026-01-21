@@ -118,3 +118,28 @@ window#waybar > box {
 #tray > .needs-attention {
   -gtk-icon-effect: highlight;
 }
+
+/* Speech-to-Text module */
+#custom-stt {
+  padding: 0 10px;
+  color: @blue;
+}
+
+#custom-stt.recording {
+  color: @red;
+  animation: pulse 1s ease-in-out infinite;
+}
+
+#custom-stt.ready {
+  color: @green;
+}
+
+#custom-stt.inactive {
+  color: @inactive;
+}
+
+@keyframes pulse {
+  0% { opacity: 1; }
+  50% { opacity: 0.5; }
+  100% { opacity: 1; }
+}

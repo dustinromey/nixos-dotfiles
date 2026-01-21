@@ -24,3 +24,7 @@ alias dbupgrade='pgcli -h romeyinc.net -U admin upgrade'
 alias btw="echo I use nixos, btw"
 
 alias gemini="npx @google/gemini-cli"
+
+# macOS-style clipboard (auto-detects Wayland vs X11)
+alias pbcopy='if [ -n "$WAYLAND_DISPLAY" ]; then wl-copy; else xclip -selection clipboard; fi'
+alias pbpaste='if [ -n "$WAYLAND_DISPLAY" ]; then wl-paste; else xclip -selection clipboard -o; fi'

@@ -77,9 +77,9 @@ binds {
         spawn "bash" "-c" "swww img $(find ~/Pictures/walls/ -type f | shuf -n 1)"
     }
 
-    // TODO: Speech to Text - waystt not available in nixpkgs yet
-    // Mod+R { spawn "sh" "-c" "pgrep -x waystt >/dev/null && pkill --signal SIGUSR1 waystt || (waystt --pipe-to /usr/bin/ydotool type --file - &)"; }
-    // Mod+Shift+R { spawn "sh" "-c" "pgrep -x waystt >/dev/null && pkill --signal SIGUSR1 waystt || (waystt --pipe-to /usr/bin/wl-copy &)"; }
+    // Speech to Text (waystt)
+    Mod+R hotkey-overlay-title="STT (type)" { spawn "bash" "-c" "~/.local/bin/stt-toggle.sh type"; }
+    Mod+Shift+R hotkey-overlay-title="STT (clipboard)" { spawn "bash" "-c" "~/.local/bin/stt-toggle.sh clipboard"; }
 
     // ── Audio Controls (with OSD) ───
     // Using swayosd for on-screen display

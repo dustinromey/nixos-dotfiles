@@ -27,6 +27,11 @@
 
   outputs = { self, nixpkgs, home-manager, ... }@inputs:
     let
+      # Custom packages overlay
+      overlay = final: prev: {
+        waystt = final.callPackage ./packages/waystt { };
+      };
+
       # Helper function to create a host configuration
       mkHost = hostname: system: nixpkgs.lib.nixosSystem {
         inherit system;
@@ -36,6 +41,9 @@
           inputs.sops-nix.nixosModules.sops
           home-manager.nixosModules.home-manager
           {
+            # Apply the overlay
+            nixpkgs.overlays = [ overlay ];
+
             home-manager = {
               useGlobalPkgs = true;
               useUserPackages = true;
