@@ -1,0 +1,25 @@
+#!/usr/bin/env bash
+# xTuple ERP launcher wrapper
+# Launches the xTuple ERP client from the synced xTuple-Portable directory
+
+XTUPLE_DIR="$HOME/xTuple-Portable"
+RUN_SCRIPT="$XTUPLE_DIR/qt-client/run-xtuple.sh"
+
+if [[ ! -d "$XTUPLE_DIR" ]]; then
+    echo "Error: xTuple-Portable directory not found at $XTUPLE_DIR"
+    echo "Please ensure xTuple-Portable is synced via Syncthing."
+    exit 1
+fi
+
+if [[ ! -x "$RUN_SCRIPT" ]]; then
+    echo "Error: run-xtuple.sh not found or not executable at $RUN_SCRIPT"
+    exit 1
+fi
+
+# Check if Docker image exists
+if ! docker image inspect xtuple-cpal:latest &>/dev/null; then
+    echo "xTuple Docker image not found. Building..."
+    cd "$XTUPLE_DIR/qt-client" && ./build-xtuple.sh
+fi
+
+exec "$RUN_SCRIPT" "$@"

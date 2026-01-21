@@ -87,6 +87,7 @@ in
     wl-clipboard # Wayland clipboard (wl-copy, wl-paste)
     xclip        # X11 clipboard
     cliphist     # Clipboard history manager
+    xorg.xhost   # X11 access control (for Docker GUI apps)
     (wrapOBS {
       plugins = with obs-studio-plugins; [
         obs-pipewire-audio-capture
@@ -200,6 +201,16 @@ in
     icon = "ghostty";
     terminal = false;
     categories = [ "System" "TerminalEmulator" ];
+  };
+
+  xdg.desktopEntries.xtuple = {
+    name = "xTuple ERP";
+    genericName = "ERP Client";
+    exec = "${config.home.homeDirectory}/.local/bin/xtuple";
+    icon = "applications-office";
+    terminal = false;
+    categories = [ "Office" "Finance" ];
+    comment = "xTuple ERP Desktop Client";
   };
 
   # Set default applications
