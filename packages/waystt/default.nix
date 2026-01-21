@@ -8,6 +8,9 @@
   llvmPackages,
   cmake,
   git,
+  vulkan-loader,
+  vulkan-headers,
+  shaderc,
 }:
 
 rustPlatform.buildRustPackage rec {
@@ -34,9 +37,16 @@ rustPlatform.buildRustPackage rec {
     openssl
     alsa-lib
     llvmPackages.libclang
+    vulkan-loader
+    vulkan-headers
+    shaderc
   ];
 
   LIBCLANG_PATH = "${llvmPackages.libclang.lib}/lib";
+
+  # Enable Vulkan backend for GPU acceleration
+  GGML_VULKAN = "1";
+  WHISPER_VULKAN = "1";
 
   meta = with lib; {
     description = "Minimal signal-driven speech-to-text for Wayland";

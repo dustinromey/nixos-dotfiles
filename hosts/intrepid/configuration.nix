@@ -9,10 +9,12 @@
 
   networking.hostName = "intrepid";
 
-  # AMD GPU support
+  # AMD GPU support with Vulkan (for whisper.cpp acceleration)
   hardware.graphics.enable = true;
   hardware.graphics.extraPackages = with pkgs; [
     amdvlk
+    vulkan-loader
+    vulkan-tools  # vulkaninfo for debugging
   ];
 
   # Optional: Force AMD Vulkan driver
