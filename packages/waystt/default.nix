@@ -24,13 +24,21 @@ rustPlatform.buildRustPackage rec {
     hash = "sha256-7RKYqED2/aPDvofNGAa48DTexQYdUqkQzb7BX0CsDCU=";
   };
 
+  # Hash will change after patching Cargo.toml
   cargoHash = "sha256-W2pfYDPFyo/ICZ5Y0nLsP4ZeUe7lBffItelnWXrOSLc=";
+
+  # Enable vulkan feature for GPU acceleration
+  postPatch = ''
+    substituteInPlace Cargo.toml \
+      --replace 'whisper-rs = "0.15"' 'whisper-rs = { version = "0.15", features = ["vulkan"] }'
+  '';
 
   nativeBuildInputs = [
     pkg-config
     cmake
     git
     llvmPackages.clang
+    shaderc  # provides glslc for Vulkan shader compilation
   ];
 
   buildInputs = [
@@ -44,9 +52,13 @@ rustPlatform.buildRustPackage rec {
 
   LIBCLANG_PATH = "${llvmPackages.libclang.lib}/lib";
 
-  # Enable Vulkan backend for GPU acceleration
-  GGML_VULKAN = "1";
-  WHISPER_VULKAN = "1";
+  # Help cmake find Vulkan during cargo build
+  preBuild = ''
+    export Vulkan_INCLUDE_DIR="${vulkan-headers}/include"
+    export Vulkan_LIBRARY="${vulkan-loader}/lib/libvulkan.so"
+    export CMAKE_PREFIX_PATH="${vulkan-headers}:${vulkan-loader}:${shaderc}:$CMAKE_PREFIX_PATH"
+    export PATH="${shaderc}/bin:$PATH"
+  '';
 
   meta = with lib; {
     description = "Minimal signal-driven speech-to-text for Wayland";
