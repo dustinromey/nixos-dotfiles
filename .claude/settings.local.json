@@ -11,7 +11,8 @@
       "Bash(nix search:*)",
       "WebSearch",
       "Bash(gsettings get:*)",
-      "Bash(echo:*)"
+      "Bash(echo:*)",
+      "Bash(waystt --help:*)"
     ]
   }
 }

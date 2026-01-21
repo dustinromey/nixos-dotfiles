@@ -19,7 +19,7 @@ start_recording() {
     # Start waystt in background, piping to chosen output
     case "$MODE" in
         type)
-            waystt --pipe-to "ydotool type --file -" &
+            waystt --pipe-to ydotool type --file - &
             ;;
         clipboard)
             waystt --pipe-to wl-copy &
