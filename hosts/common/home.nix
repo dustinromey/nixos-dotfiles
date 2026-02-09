@@ -95,6 +95,8 @@ in
     })  # OBS with plugins
     v4l-utils    # Webcam configuration tools
     mpv          # Video player
+    filezilla    # FTP/SFTP client
+    nmap         # Network scanner
 
     # Niri/Wayland utilities
     swaylock-effects  # Lock screen with effects
