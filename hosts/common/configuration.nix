@@ -3,7 +3,18 @@
 {
   # Use the systemd-boot EFI boot loader.
   boot.loader.systemd-boot.enable = lib.mkDefault true;
+  boot.loader.systemd-boot.configurationLimit = lib.mkDefault 7;  # Keep last 7 generations in boot menu
   boot.loader.efi.canTouchEfiVariables = lib.mkDefault true;
+
+  # Automatic garbage collection
+  nix.gc = {
+    automatic = true;
+    dates = "weekly";
+    options = "--delete-older-than 14d";
+  };
+
+  # Optimize store (deduplication)
+  nix.settings.auto-optimise-store = true;
 
   # Using iwd for WiFi (required for impala TUI)
   networking.wireless.iwd.enable = lib.mkDefault true;
