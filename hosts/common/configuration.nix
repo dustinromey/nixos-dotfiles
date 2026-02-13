@@ -47,6 +47,9 @@
   # Enable uinput for evremap (key remapping)
   hardware.uinput.enable = lib.mkDefault true;
 
+  # Tailscale VPN
+  services.tailscale.enable = lib.mkDefault true;
+
   # Docker
   virtualisation.docker.enable = lib.mkDefault true;
 
