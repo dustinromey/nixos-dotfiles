@@ -154,6 +154,7 @@
     xwayland                 # X11 compatibility layer for Wayland
     xwayland-satellite       # Rootless XWayland for compositors without built-in support
     waystt                   # Wayland speech-to-text
+    cifs-utils               # SMB/CIFS mount support
   ];
 
   fonts.packages = with pkgs; [
