@@ -69,7 +69,6 @@
   };
 
   programs.firefox = {
-    enable = true;
     preferences = {
       # Use GTK file picker via xdg-desktop-portal
       "widget.use-xdg-desktop-portal.file-picker" = 1;
@@ -180,6 +179,8 @@
     mkdir -p /bin
     ln -sf ${pkgs.bash}/bin/bash /bin/bash
   '';
+
+  programs.nix-ld.enable = true;
 
   system.stateVersion = "25.05";
 }
