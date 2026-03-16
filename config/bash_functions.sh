@@ -20,6 +20,12 @@ function whatsmyip_pro () {
     echo "External IP: $EXTERNAL_IP"
 }
 
+heic2png() {
+	for f in "$@"; do
+		magick "$f" "${f%.*}.png"
+	done
+}
+
 extract() {
 	for archive in "$@"; do
 		if [ -f "$archive" ]; then

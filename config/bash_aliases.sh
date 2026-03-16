@@ -25,6 +25,9 @@ alias btw="echo I use nixos, btw"
 
 alias gemini="npx @google/gemini-cli"
 
+# Image conversion (HEIC to PNG)
+alias heic2png-all='for f in *.heic *.HEIC; do [ -f "$f" ] && magick "$f" "${f%.*}.png"; done'
+
 # macOS-style clipboard (auto-detects Wayland vs X11)
 alias pbcopy='if [ -n "$WAYLAND_DISPLAY" ]; then wl-copy; else xclip -selection clipboard; fi'
 alias pbpaste='if [ -n "$WAYLAND_DISPLAY" ]; then wl-paste; else xclip -selection clipboard -o; fi'

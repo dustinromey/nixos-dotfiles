@@ -97,6 +97,9 @@ in
     mpv          # Video player
     filezilla    # FTP/SFTP client
     nmap         # Network scanner
+    (pkgs.lib.hiPrio sox)  # Audio recording/processing; hiPrio to resolve collision with gotools' play binary
+    imagemagick  # Image conversion/manipulation
+    libheif      # HEIC image format support
 
     # Niri/Wayland utilities
     swaylock-effects  # Lock screen with effects
