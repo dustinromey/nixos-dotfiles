@@ -12,7 +12,10 @@
       "WebSearch",
       "Bash(gsettings get:*)",
       "Bash(echo:*)",
-      "Bash(waystt --help:*)"
+      "Bash(waystt --help:*)",
+      "Bash(git add:*)",
+      "Bash(git commit:*)",
+      "Bash(git push)"
     ]
   }
 }
