@@ -37,7 +37,9 @@ Plans:
   2. Holding the evdev hotkey (Alt_R + Menu) starts recording; releasing stops and injects transcribed text at cursor
   3. Waystt overlay is absent from flake.nix and packages/waystt/ directory is gone; `nix flake check` still passes
   4. Old waystt keybindings are removed from Niri config and no dead references to waystt toggle scripts remain
-**Plans**: TBD
+**Plans:** 1 plan
+Plans:
+- [ ] 02-01-PLAN.md — Configure voxtype daemon with PTT and remove all waystt artifacts
 
 ### Phase 3: GPU Acceleration + Waybar
 **Goal**: Intrepid and vigilant use Vulkan-accelerated voxtype; mischief stays CPU-only; Waybar shows live voxtype recording status
@@ -57,5 +59,5 @@ Phases execute in numeric order: 1 → 2 → 3
 | Phase | Plans Complete | Status | Completed |
 |-------|----------------|--------|-----------|
 | 1. Flake Foundation | 1/1 | Complete    | 2026-03-20 |
-| 2. Daemon + Replacement | 0/? | Not started | - |
+| 2. Daemon + Replacement | 0/1 | Not started | - |
 | 3. GPU Acceleration + Waybar | 0/? | Not started | - |
