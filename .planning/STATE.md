@@ -10,27 +10,27 @@ See: .planning/PROJECT.md (updated 2026-03-20)
 ## Current Position
 
 Phase: 1 of 3 (Flake Foundation)
-Plan: 0 of 1 in current phase
-Status: Ready to execute
-Last activity: 2026-03-20 — Roadmap created; phases derived from requirements
+Plan: 1 of 1 in current phase (phase complete)
+Status: Phase 1 complete — ready for Phase 2
+Last activity: 2026-03-20 — Executed 01-01-PLAN.md; voxtype integrated, waystt removed
 
-Progress: [░░░░░░░░░░] 0%
+Progress: [███░░░░░░░] 33%
 
 ## Performance Metrics
 
 **Velocity:**
-- Total plans completed: 0
-- Average duration: —
-- Total execution time: —
+- Total plans completed: 1
+- Average duration: 7 min
+- Total execution time: 7 min
 
 **By Phase:**
 
 | Phase | Plans | Total | Avg/Plan |
 |-------|-------|-------|----------|
-| - | - | - | - |
+| 01 (Flake Foundation) | 1 | 7 min | 7 min |
 
 **Recent Trend:**
-- Last 5 plans: none yet
+- Last 5 plans: 01-01 (7 min)
 - Trend: —
 
 *Updated after each plan completion*
@@ -46,6 +46,8 @@ Recent decisions affecting current work:
 - Home Manager module over NixOS module for user config — consistent with existing repo pattern
 - Evdev hotkey mode for push-to-talk — Niri has no key-release bind; evdev is the only viable approach
 - Waystt removal is atomic with keybinding update in Phase 2 — prevents partial state with both tools present
+- [Phase 01]: programs.voxtype.package must be set explicitly — upstream module has no default; set to CPU default with lib.mkDefault so hosts can override to vulkan/rocm in Phase 3
+- [Phase 01]: Pinned voxtype to v0.6.4 tag with nixpkgs.follows to prevent double evaluation
 
 ### Pending Todos
 
@@ -59,5 +61,5 @@ None yet.
 ## Session Continuity
 
 Last session: 2026-03-20
-Stopped at: Phase 1 planned — 1 plan in 1 wave, verified
-Resume file: .planning/phases/01-flake-foundation/01-01-PLAN.md
+Stopped at: Completed 01-01-PLAN.md — Phase 1 complete
+Resume file: .planning/phases/02-daemon-activation/ (Phase 2 not yet planned)

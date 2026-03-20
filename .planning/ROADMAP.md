@@ -10,7 +10,7 @@ This roadmap replaces waystt with voxtype across all three hosts (mischief, intr
 - Integer phases (1, 2, 3): Planned milestone work
 - Decimal phases (2.1, 2.2): Urgent insertions (marked with INSERTED)
 
-- [ ] **Phase 1: Flake Foundation** - Add voxtype flake input and import NixOS module in common configuration
+- [x] **Phase 1: Flake Foundation** - Add voxtype flake input and import NixOS module in common configuration (completed 2026-03-20)
 - [ ] **Phase 2: Daemon + Replacement** - Activate voxtype daemon on all hosts with push-to-talk; atomically remove waystt
 - [ ] **Phase 3: GPU Acceleration + Waybar** - Enable Vulkan on AMD hosts and update Waybar STT status widget
 
@@ -24,7 +24,7 @@ This roadmap replaces waystt with voxtype across all three hosts (mischief, intr
   1. `nix flake check` passes with voxtype input present and nixpkgs.follows set
   2. `nixos-rebuild switch` succeeds on any host without errors from the voxtype nixosModule import
   3. Voxtype is available as a system package (visible in `nix path-info`)
-**Plans:** 1 plan
+**Plans:** 1/1 plans complete
 Plans:
 - [ ] 01-01-PLAN.md — Add voxtype input, import modules, remove waystt overlay
 
@@ -56,6 +56,6 @@ Phases execute in numeric order: 1 → 2 → 3
 
 | Phase | Plans Complete | Status | Completed |
 |-------|----------------|--------|-----------|
-| 1. Flake Foundation | 0/1 | Planned | - |
+| 1. Flake Foundation | 1/1 | Complete   | 2026-03-20 |
 | 2. Daemon + Replacement | 0/? | Not started | - |
 | 3. GPU Acceleration + Waybar | 0/? | Not started | - |

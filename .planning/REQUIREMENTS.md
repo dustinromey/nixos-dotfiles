@@ -9,9 +9,9 @@ Requirements for initial release. Each maps to roadmap phases.
 
 ### Flake Integration
 
-- [ ] **FLAKE-01**: Voxtype flake input added to flake.nix with nixpkgs.follows to avoid double evaluation
-- [ ] **FLAKE-02**: Voxtype nixosModule imported in common configuration.nix
-- [ ] **FLAKE-03**: Voxtype homeManagerModule imported in common home.nix
+- [x] **FLAKE-01**: Voxtype flake input added to flake.nix with nixpkgs.follows to avoid double evaluation
+- [x] **FLAKE-02**: Voxtype nixosModule imported in common configuration.nix
+- [x] **FLAKE-03**: Voxtype homeManagerModule imported in common home.nix
 
 ### Speech-to-Text Core
 
@@ -88,9 +88,9 @@ Which phases cover which requirements. Updated during roadmap creation.
 
 | Requirement | Phase | Status |
 |-------------|-------|--------|
-| FLAKE-01 | Phase 1 | Pending |
-| FLAKE-02 | Phase 1 | Pending |
-| FLAKE-03 | Phase 1 | Pending |
+| FLAKE-01 | Phase 1 | Complete |
+| FLAKE-02 | Phase 1 | Complete |
+| FLAKE-03 | Phase 1 | Complete |
 | STT-01 | Phase 2 | Pending |
 | STT-02 | Phase 2 | Pending |
 | STT-03 | Phase 2 | Pending |
