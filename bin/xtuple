@@ -22,4 +22,13 @@ if ! docker image inspect xtuple-cpal:latest &>/dev/null; then
     cd "$XTUPLE_DIR/qt-client" && ./build-xtuple.sh
 fi
 
+# Set high DPI for the XWayland display so Qt4 renders larger fonts
+XTUPLE_DPI="${XTUPLE_DPI:-168}"
+for d in 0 1 2; do
+    if [ -S "/tmp/.X11-unix/X$d" ]; then
+        DISPLAY=":$d" xrdb -merge <<< "Xft.dpi: $XTUPLE_DPI" 2>/dev/null
+        break
+    fi
+done
+
 exec "$RUN_SCRIPT" "$@"
