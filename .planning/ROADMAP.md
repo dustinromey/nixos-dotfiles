@@ -24,7 +24,9 @@ This roadmap replaces waystt with voxtype across all three hosts (mischief, intr
   1. `nix flake check` passes with voxtype input present and nixpkgs.follows set
   2. `nixos-rebuild switch` succeeds on any host without errors from the voxtype nixosModule import
   3. Voxtype is available as a system package (visible in `nix path-info`)
-**Plans**: TBD
+**Plans:** 1 plan
+Plans:
+- [ ] 01-01-PLAN.md — Add voxtype input, import modules, remove waystt overlay
 
 ### Phase 2: Daemon + Replacement
 **Goal**: Voxtype daemon runs on all three hosts via systemd user service with evdev push-to-talk; waystt is fully removed with no conflicts
@@ -54,6 +56,6 @@ Phases execute in numeric order: 1 → 2 → 3
 
 | Phase | Plans Complete | Status | Completed |
 |-------|----------------|--------|-----------|
-| 1. Flake Foundation | 0/? | Not started | - |
+| 1. Flake Foundation | 0/1 | Planned | - |
 | 2. Daemon + Replacement | 0/? | Not started | - |
 | 3. GPU Acceleration + Waybar | 0/? | Not started | - |
