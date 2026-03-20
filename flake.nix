@@ -18,6 +18,10 @@
     fresh.url = "github:sinelaw/fresh";
     fresh.inputs.nixpkgs.follows = "nixpkgs";
 
+    # Voxtype voice-to-text
+    voxtype.url = "github:peteonrails/voxtype/v0.6.4";
+    voxtype.inputs.nixpkgs.follows = "nixpkgs";
+
     # Ghostty terminal (for latest version)
     ghostty.url = "github:ghostty-org/ghostty";
 
@@ -25,35 +29,35 @@
     nixos-hardware.url = "github:NixOS/nixos-hardware";
   };
 
-  outputs = { self, nixpkgs, home-manager, ... }@inputs:
+  outputs =
+    {
+      self,
+      nixpkgs,
+      home-manager,
+      ...
+    }@inputs:
     let
-      # Custom packages overlay
-      overlay = final: prev: {
-        waystt = final.callPackage ./packages/waystt { };
-      };
-
       # Helper function to create a host configuration
-      mkHost = hostname: system: nixpkgs.lib.nixosSystem {
-        inherit system;
-        specialArgs = { inherit inputs; };
-        modules = [
-          ./hosts/${hostname}/configuration.nix
-          inputs.sops-nix.nixosModules.sops
-          home-manager.nixosModules.home-manager
-          {
-            # Apply the overlay
-            nixpkgs.overlays = [ overlay ];
-
-            home-manager = {
-              useGlobalPkgs = true;
-              useUserPackages = true;
-              extraSpecialArgs = { inherit inputs; };
-              users.dustin = import ./hosts/${hostname}/home.nix;
-              backupFileExtension = "backup";
-            };
-          }
-        ];
-      };
+      mkHost =
+        hostname: system:
+        nixpkgs.lib.nixosSystem {
+          inherit system;
+          specialArgs = { inherit inputs; };
+          modules = [
+            ./hosts/${hostname}/configuration.nix
+            inputs.sops-nix.nixosModules.sops
+            home-manager.nixosModules.home-manager
+            {
+              home-manager = {
+                useGlobalPkgs = true;
+                useUserPackages = true;
+                extraSpecialArgs = { inherit inputs; };
+                users.dustin = import ./hosts/${hostname}/home.nix;
+                backupFileExtension = "backup";
+              };
+            }
+          ];
+        };
     in
     {
       nixosConfigurations = {
