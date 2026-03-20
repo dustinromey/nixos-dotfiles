@@ -1,4 +1,9 @@
-{ config, pkgs, inputs, ... }:
+{
+  config,
+  pkgs,
+  inputs,
+  ...
+}:
 
 let
   dotfiles = "${config.home.homeDirectory}/nixos-dotfiles/config";
@@ -6,14 +11,21 @@ let
   create_symlink = path: config.lib.file.mkOutOfStoreSymlink path;
 
   # Android SDK for React Native / Expo development
-  androidSdk = (pkgs.androidenv.composeAndroidPackages {
-    platformVersions = [ "34" "35" ];
-    buildToolsVersions = [ "34.0.0" "35.0.0" ];
-    includeEmulator = true;
-    includeSystemImages = true;
-    systemImageTypes = [ "google_apis_playstore" ];
-    abiVersions = [ "x86_64" ];
-  }).androidsdk;
+  androidSdk =
+    (pkgs.androidenv.composeAndroidPackages {
+      platformVersions = [
+        "34"
+        "35"
+      ];
+      buildToolsVersions = [
+        "34.0.0"
+        "35.0.0"
+      ];
+      includeEmulator = true;
+      includeSystemImages = true;
+      systemImageTypes = [ "google_apis_playstore" ];
+      abiVersions = [ "x86_64" ];
+    }).androidsdk;
 
   # Standard .config/directory
   configs = {
@@ -32,6 +44,10 @@ let
 in
 
 {
+  imports = [
+    inputs.voxtype.homeManagerModules.default
+  ];
+
   # 1. Install Zed and the required Language Servers
   home.packages = with pkgs; [
     # --- Language Servers (LSPs) & Formatters ---
@@ -39,18 +55,18 @@ in
     nixfmt-rfc-style
     rust-analyzer
     rustfmt
-    pyright       # Type checker / LSP
-    black         # Formatter
+    pyright # Type checker / LSP
+    black # Formatter
     lua-language-server
     stylua
     gopls
-    gotools       # contains goimports, etc.
+    gotools # contains goimports, etc.
     nodePackages.typescript-language-server
     nodePackages.prettier # Common formatter
     nodePackages.bash-language-server
     shfmt
     nodePackages.vscode-langservers-extracted # Contains JSON LS
-    sqls          # SQL Language Server
+    sqls # SQL Language Server
     fish-lsp
 
     # Fonts (Required for your 'Hack' terminal setting)
@@ -58,10 +74,10 @@ in
 
     # command-line programs
     neovim
-    bat              # cat replacement with syntax highlighting
+    bat # cat replacement with syntax highlighting
     ripgrep
-    jq               # JSON processor
-    curl             # HTTP client
+    jq # JSON processor
+    curl # HTTP client
     # Archive tools (for extract function)
     unzip
     unrar
@@ -74,42 +90,42 @@ in
     nodejs_22
     python3
     gcc
-    rofi-wayland  # Works on both X11 (Qtile) and Wayland (Niri)
+    rofi-wayland # Works on both X11 (Qtile) and Wayland (Niri)
     zed-editor
     fastfetch
     btop
     claude-code
-    inputs.fresh.packages.${pkgs.system}.default  # Fresh text editor
+    inputs.fresh.packages.${pkgs.system}.default # Fresh text editor
     waybar
-    impala       # WiFi TUI
-    bluetui      # Bluetooth TUI
-    obsidian     # Markdown notes app
+    impala # WiFi TUI
+    bluetui # Bluetooth TUI
+    obsidian # Markdown notes app
     wl-clipboard # Wayland clipboard (wl-copy, wl-paste)
-    xclip        # X11 clipboard
-    cliphist     # Clipboard history manager
-    xorg.xhost   # X11 access control (for Docker GUI apps)
+    xclip # X11 clipboard
+    cliphist # Clipboard history manager
+    xorg.xhost # X11 access control (for Docker GUI apps)
     (wrapOBS {
       plugins = with obs-studio-plugins; [
         obs-pipewire-audio-capture
       ];
-    })  # OBS with plugins
-    v4l-utils    # Webcam configuration tools
-    mpv          # Video player
-    filezilla    # FTP/SFTP client
-    nmap         # Network scanner
+    }) # OBS with plugins
+    v4l-utils # Webcam configuration tools
+    mpv # Video player
+    filezilla # FTP/SFTP client
+    nmap # Network scanner
 
     # Niri/Wayland utilities
-    swaylock-effects  # Lock screen with effects
-    swayosd          # On-screen display for volume/brightness
-    swww             # Wallpaper daemon
-    mako             # Notification daemon
-    libnotify        # notify-send command (for STT notifications)
-    playerctl        # Media player control
-    brightnessctl    # Brightness control
+    swaylock-effects # Lock screen with effects
+    swayosd # On-screen display for volume/brightness
+    swww # Wallpaper daemon
+    mako # Notification daemon
+    libnotify # notify-send command (for STT notifications)
+    playerctl # Media player control
+    brightnessctl # Brightness control
 
     # Database tools
-    pgcli            # PostgreSQL CLI with autocomplete
-    pspg             # Pager for PostgreSQL
+    pgcli # PostgreSQL CLI with autocomplete
+    pspg # Pager for PostgreSQL
 
     # Android / React Native development
     androidSdk
@@ -117,7 +133,6 @@ in
     eas-cli
     watchman
   ];
-
 
   home.username = "dustin";
   home.homeDirectory = "/home/dustin";
@@ -182,7 +197,11 @@ in
     exec = "thunar %U";
     icon = "system-file-manager";
     terminal = false;
-    categories = [ "Utility" "Core" "FileManager" ];
+    categories = [
+      "Utility"
+      "Core"
+      "FileManager"
+    ];
     mimeType = [ "inode/directory" ];
   };
 
@@ -192,8 +211,17 @@ in
     exec = "brave --password-store=basic %U";
     icon = "brave-browser";
     terminal = false;
-    categories = [ "Network" "WebBrowser" ];
-    mimeType = [ "text/html" "text/xml" "application/xhtml+xml" "x-scheme-handler/http" "x-scheme-handler/https" ];
+    categories = [
+      "Network"
+      "WebBrowser"
+    ];
+    mimeType = [
+      "text/html"
+      "text/xml"
+      "application/xhtml+xml"
+      "x-scheme-handler/http"
+      "x-scheme-handler/https"
+    ];
   };
 
   xdg.desktopEntries.ghostty = {
@@ -202,7 +230,10 @@ in
     exec = "ghostty";
     icon = "ghostty";
     terminal = false;
-    categories = [ "System" "TerminalEmulator" ];
+    categories = [
+      "System"
+      "TerminalEmulator"
+    ];
   };
 
   xdg.desktopEntries.xtuple = {
@@ -211,7 +242,10 @@ in
     exec = "${config.home.homeDirectory}/.local/bin/xtuple";
     icon = "applications-office";
     terminal = false;
-    categories = [ "Office" "Finance" ];
+    categories = [
+      "Office"
+      "Finance"
+    ];
     comment = "xTuple ERP Desktop Client";
   };
 
@@ -223,13 +257,11 @@ in
     };
   };
 
-# Load config files for list from top of file
-  xdg.configFile = builtins.mapAttrs
-    (name: subpath: {
-      source = create_symlink "${dotfiles}/${subpath}";
-      recursive = true;
-    })
-    configs;
+  # Load config files for list from top of file
+  xdg.configFile = builtins.mapAttrs (name: subpath: {
+    source = create_symlink "${dotfiles}/${subpath}";
+    recursive = true;
+  }) configs;
 
   # Symlink ~/.local/bin for custom scripts
   home.file.".local/bin" = {

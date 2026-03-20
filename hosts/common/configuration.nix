@@ -1,9 +1,19 @@
-{ config, lib, pkgs, inputs, ... }:
+{
+  config,
+  lib,
+  pkgs,
+  inputs,
+  ...
+}:
 
 {
+  imports = [
+    inputs.voxtype.nixosModules.default
+  ];
+
   # Use the systemd-boot EFI boot loader.
   boot.loader.systemd-boot.enable = lib.mkDefault true;
-  boot.loader.systemd-boot.configurationLimit = lib.mkDefault 7;  # Keep last 7 generations in boot menu
+  boot.loader.systemd-boot.configurationLimit = lib.mkDefault 7; # Keep last 7 generations in boot menu
   boot.loader.efi.canTouchEfiVariables = lib.mkDefault true;
 
   # Automatic garbage collection
@@ -33,6 +43,30 @@
 
   # Enable CUPS to print documents.
   services.printing.enable = lib.mkDefault true;
+  services.printing.drivers = [ pkgs.brlaser ];
+
+  # Network printer discovery (mDNS/Avahi)
+  services.avahi = {
+    enable = true;
+    nssmdns4 = true;
+    openFirewall = true;
+  };
+
+  # Brother HL-L2360DW printer
+  hardware.printers = {
+    ensurePrinters = [
+      {
+        name = "DustinPrint";
+        description = "Brother HL-L2360DW";
+        deviceUri = "dnssd://Brother%20HL-L2360DW%20series._ipp._tcp.local/";
+        model = "drv:///brlaser.drv/brl2360d.ppd";
+        ppdOptions = {
+          PageSize = "Letter";
+        };
+      }
+    ];
+    ensureDefaultPrinter = "DustinPrint";
+  };
 
   # Enable sound.
   services.pipewire = {
@@ -49,6 +83,7 @@
 
   # Tailscale VPN
   services.tailscale.enable = lib.mkDefault true;
+  services.tailscale.useRoutingFeatures = lib.mkDefault "client";
 
   # Docker
   virtualisation.docker.enable = lib.mkDefault true;
@@ -56,13 +91,25 @@
   # Android development
   programs.adb.enable = lib.mkDefault true;
 
-  # ydotool for keyboard/mouse automation (used by waystt)
+  # ydotool for keyboard/mouse automation
   programs.ydotool.enable = lib.mkDefault true;
+
+  # Voxtype voice-to-text
+  programs.voxtype.enable = lib.mkDefault true;
+  programs.voxtype.package = lib.mkDefault inputs.voxtype.packages.${pkgs.system}.default;
 
   # Define a user account. Don't forget to set a password with 'passwd'.
   users.users.dustin = {
     isNormalUser = true;
-    extraGroups = [ "wheel" "input" "uinput" "docker" "video" "adbusers" "kvm" ]; # Enable 'sudo' for the user.
+    extraGroups = [
+      "wheel"
+      "input"
+      "uinput"
+      "docker"
+      "video"
+      "adbusers"
+      "kvm"
+    ]; # Enable 'sudo' for the user.
     packages = with pkgs; [
       tree
     ];
@@ -111,8 +158,8 @@
 
   # USB/removable drive mounting (for Thunar)
   services.udisks2.enable = true;
-  services.gvfs.enable = true;  # Virtual filesystem for removable media, trash support
-  services.tumbler.enable = true;  # Thumbnail service for Thunar
+  services.gvfs.enable = true; # Virtual filesystem for removable media, trash support
+  services.tumbler.enable = true; # Thumbnail service for Thunar
 
   # evremap package and uinput enabled in common config
   # Host-specific configs define the systemd service with appropriate config file
@@ -122,12 +169,15 @@
     enable = true;
     extraPortals = [
       pkgs.xdg-desktop-portal-gtk
-      pkgs.xdg-desktop-portal-gnome  # Required for screen capture on Niri
+      pkgs.xdg-desktop-portal-gnome # Required for screen capture on Niri
     ];
     config = {
       common.default = [ "gtk" ];
       niri = {
-        default = [ "gnome" "gtk" ];
+        default = [
+          "gnome"
+          "gtk"
+        ];
         "org.freedesktop.impl.portal.ScreenCast" = [ "gnome" ];
         "org.freedesktop.impl.portal.Screenshot" = [ "gnome" ];
         "org.freedesktop.impl.portal.FileChooser" = [ "gtk" ];
@@ -141,20 +191,19 @@
     wget
     git
     niri
-    inputs.ghostty.packages.x86_64-linux.default  # Use flake for latest version
+    inputs.ghostty.packages.x86_64-linux.default # Use flake for latest version
     brave
-    xfce.thunar              # File manager
-    xfce.thunar-volman       # Volume management for Thunar
-    xfce.thunar-archive-plugin  # Archive support in Thunar
-    glib                     # Contains gsettings
-    dconf                    # Backend for gsettings
-    nwg-look                 # GTK theming GUI
-    papirus-icon-theme       # Icon theme (works well with GTK)
-    evremap                  # evdev-based key remapper (works with X11 and Wayland)
-    xwayland                 # X11 compatibility layer for Wayland
-    xwayland-satellite       # Rootless XWayland for compositors without built-in support
-    waystt                   # Wayland speech-to-text
-    cifs-utils               # SMB/CIFS mount support
+    xfce.thunar # File manager
+    xfce.thunar-volman # Volume management for Thunar
+    xfce.thunar-archive-plugin # Archive support in Thunar
+    glib # Contains gsettings
+    dconf # Backend for gsettings
+    nwg-look # GTK theming GUI
+    papirus-icon-theme # Icon theme (works well with GTK)
+    evremap # evdev-based key remapper (works with X11 and Wayland)
+    xwayland # X11 compatibility layer for Wayland
+    xwayland-satellite # Rootless XWayland for compositors without built-in support
+    cifs-utils # SMB/CIFS mount support
   ];
 
   fonts.packages = with pkgs; [
@@ -162,7 +211,10 @@
     hack-font
   ];
 
-  nix.settings.experimental-features = [ "nix-command" "flakes" ];
+  nix.settings.experimental-features = [
+    "nix-command"
+    "flakes"
+  ];
 
   # Claude Code overlay
   nixpkgs.overlays = [
