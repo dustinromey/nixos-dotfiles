@@ -88,31 +88,31 @@ Which phases cover which requirements. Updated during roadmap creation.
 
 | Requirement | Phase | Status |
 |-------------|-------|--------|
-| FLAKE-01 | — | Pending |
-| FLAKE-02 | — | Pending |
-| FLAKE-03 | — | Pending |
-| STT-01 | — | Pending |
-| STT-02 | — | Pending |
-| STT-03 | — | Pending |
-| STT-04 | — | Pending |
-| PTT-01 | — | Pending |
-| PTT-02 | — | Pending |
-| PTT-03 | — | Pending |
-| GPU-01 | — | Pending |
-| GPU-02 | — | Pending |
-| GPU-03 | — | Pending |
-| REM-01 | — | Pending |
-| REM-02 | — | Pending |
-| REM-03 | — | Pending |
-| REM-04 | — | Pending |
-| BAR-01 | — | Pending |
-| BAR-02 | — | Pending |
+| FLAKE-01 | Phase 1 | Pending |
+| FLAKE-02 | Phase 1 | Pending |
+| FLAKE-03 | Phase 1 | Pending |
+| STT-01 | Phase 2 | Pending |
+| STT-02 | Phase 2 | Pending |
+| STT-03 | Phase 2 | Pending |
+| STT-04 | Phase 2 | Pending |
+| PTT-01 | Phase 2 | Pending |
+| PTT-02 | Phase 2 | Pending |
+| PTT-03 | Phase 2 | Pending |
+| REM-01 | Phase 2 | Pending |
+| REM-02 | Phase 2 | Pending |
+| REM-03 | Phase 2 | Pending |
+| REM-04 | Phase 2 | Pending |
+| GPU-01 | Phase 3 | Pending |
+| GPU-02 | Phase 3 | Pending |
+| GPU-03 | Phase 3 | Pending |
+| BAR-01 | Phase 3 | Pending |
+| BAR-02 | Phase 3 | Pending |
 
 **Coverage:**
 - v1 requirements: 19 total
-- Mapped to phases: 0
-- Unmapped: 19
+- Mapped to phases: 19
+- Unmapped: 0
 
 ---
 *Requirements defined: 2026-03-20*
-*Last updated: 2026-03-20 after initial definition*
+*Last updated: 2026-03-20 after roadmap creation*
