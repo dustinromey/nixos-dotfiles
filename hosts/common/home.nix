@@ -48,6 +48,40 @@ in
     inputs.voxtype.homeManagerModules.default
   ];
 
+  programs.voxtype = {
+    enable = true;
+    package = inputs.voxtype.packages.${pkgs.system}.default;
+
+    service.enable = true;
+
+    model.name = "base.en";
+
+    settings = {
+      hotkey = {
+        enabled = true;
+        key = "MENU";
+        modifiers = [ "RIGHTALT" ];
+        mode = "push_to_talk";
+      };
+      output = {
+        mode = "type";
+        fallback_to_clipboard = true;
+      };
+      whisper = {
+        language = "en";
+      };
+    };
+  };
+
+  # Bug #253 workaround: systemd user service lacks PATH for output tools
+  systemd.user.services.voxtype = {
+    Service = {
+      Environment = [
+        "PATH=/run/current-system/sw/bin:${inputs.voxtype.packages.${pkgs.system}.default}/bin"
+      ];
+    };
+  };
+
   # 1. Install Zed and the required Language Servers
   home.packages = with pkgs; [
     # --- Language Servers (LSPs) & Formatters ---
