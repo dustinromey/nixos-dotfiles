@@ -46,10 +46,10 @@ Requirements for initial release. Each maps to roadmap phases.
 
 ### Claude Integration
 
-- [ ] **CLAUDE-01**: Claude Code CLI installed via Nix and available in PATH on all hosts
-- [ ] **CLAUDE-02**: Claude desktop app installed with desktop entry and icon
-- [ ] **CLAUDE-03**: Both claude packages added through common home.nix (shared across hosts)
-- [ ] **CLAUDE-04**: `nix flake check` passes with claude packages present
+- [x] **CLAUDE-01**: Claude Code CLI installed via Nix and available in PATH on all hosts
+- [x] **CLAUDE-02**: Claude desktop app installed with desktop entry and icon
+- [x] **CLAUDE-03**: Both claude packages added through common home.nix (shared across hosts)
+- [x] **CLAUDE-04**: `nix flake check` passes with claude packages present
 
 ## v2 Requirements
 

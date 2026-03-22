@@ -74,7 +74,7 @@ Phases execute in numeric order: 1 → 2 → 3 → 4
   2. Claude desktop app launches from application launcher (Rofi) and appears in desktop entries
   3. `nix flake check` passes with claude packages present
   4. All hosts share the same claude installation via common home.nix
-**Plans:** 1 plan
+**Plans:** 1/1 plans complete
 
 Plans:
 - [ ] 04-01-PLAN.md — Add claude-desktop flake input and package to common home.nix

@@ -9,12 +9,12 @@ See: .planning/PROJECT.md (updated 2026-03-20)
 
 ## Current Position
 
-Phase: 3 of 4 (GPU Acceleration & Waybar) — COMPLETE
-Plan: 2 of 2 complete in current phase
-Status: Phase 3 complete — Phase 4 pending
-Last activity: 2026-03-22 — Executed 03-02-PLAN.md; Waybar STT module with voxtype integration added
+Phase: 4 of 4 (Add claude-for-linux to NixOS setup) — COMPLETE
+Plan: 1 of 1 complete in current phase
+Status: All phases complete
+Last activity: 2026-03-22 — Executed 04-01-PLAN.md; Claude Desktop Linux app added to all hosts via common home.nix
 
-Progress: [█████████░] 90%
+Progress: [██████████] 100%
 
 ## Performance Metrics
 
@@ -30,9 +30,10 @@ Progress: [█████████░] 90%
 | 01 (Flake Foundation) | 1 | 7 min | 7 min |
 | 02 (Daemon Replacement) | 1 | 3 min | 3 min |
 | 03 (GPU Acceleration & Waybar) | 2 | 7 min | 3.5 min |
+| 04 (Claude for Linux) | 1 | 3 min | 3 min |
 
 **Recent Trend:**
-- Last 5 plans: 01-01 (7 min), 02-01 (3 min), 03-01 (4 min), 03-02 (3 min)
+- Last 5 plans: 01-01 (7 min), 02-01 (3 min), 03-01 (4 min), 03-02 (3 min), 04-01 (3 min)
 - Trend: Stable ~3-4 min/plan
 
 *Updated after each plan completion*
@@ -54,6 +55,9 @@ Recent decisions affecting current work:
 - [Phase 02-daemon-replacement]: No replacement Niri keybindings added — voxtype evdev handles push-to-talk at input layer without compositor binds
 - [Phase 03-gpu-acceleration-waybar]: Vulkan over CPU-only for AMD hosts: intrepid and vigilant override voxtype package to Vulkan variant; mischief inherits CPU default via lib.mkDefault
 - [Phase 03-waybar-stt]: Use Service.Environment for Waybar PATH (not systemd path= option) — home-manager path option expects attrset, not list; Service.Environment matches existing voxtype pattern
+- [Phase 04]: Use claude-desktop (not claude-desktop-with-fhs) — FHS variant is only for MCP servers, out of scope
+- [Phase 04]: No manual xdg.desktopEntries for Claude Desktop — k3d3 package auto-includes .desktop file; manual entry would duplicate
+- [Phase 04]: flake-utils added as top-level input with follows from claude-desktop to prevent double evaluation
 
 ### Pending Todos
 
@@ -70,5 +74,5 @@ None yet.
 ## Session Continuity
 
 Last session: 2026-03-22
-Stopped at: Completed 03-02-PLAN.md — Waybar STT module with voxtype integration added
-Resume file: .planning/phases/04-add-claude-for-linux-to-nixos-setup/
+Stopped at: Completed 04-01-PLAN.md — Claude Desktop Linux app added to all hosts via common home.nix
+Resume file: N/A — all phases complete
