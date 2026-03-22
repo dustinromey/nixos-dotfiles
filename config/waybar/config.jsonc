@@ -9,7 +9,7 @@
 
   "modules-left": ["niri/workspaces"],
   "modules-center": ["clock"],
-  "modules-right": ["pulseaudio", "network", "bluetooth", "battery", "tray"],
+  "modules-right": ["custom/stt", "pulseaudio", "network", "bluetooth", "battery", "tray"],
 
   "niri/workspaces": {
     "on-click": "activate",
@@ -87,5 +87,18 @@
   "tray": {
     "icon-size": 16,
     "spacing": 8
+  },
+
+  "custom/stt": {
+    "exec": "voxtype status --follow --format json",
+    "return-type": "json",
+    "format": "{icon}",
+    "format-icons": {
+      "idle":         "󰍬",
+      "recording":    "󰑊",
+      "transcribing": "󰋚",
+      "stopped":      "󰍭"
+    },
+    "tooltip": true
   }
 }

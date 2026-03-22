@@ -119,10 +119,14 @@ window#waybar > box {
   -gtk-icon-effect: highlight;
 }
 
-/* Speech-to-Text module */
+/* Speech-to-Text module (voxtype) */
 #custom-stt {
   padding: 0 10px;
   color: @blue;
+}
+
+#custom-stt.idle {
+  color: @green;
 }
 
 #custom-stt.recording {
@@ -130,11 +134,11 @@ window#waybar > box {
   animation: pulse 1s ease-in-out infinite;
 }
 
-#custom-stt.ready {
-  color: @green;
+#custom-stt.transcribing {
+  color: @yellow;
 }
 
-#custom-stt.inactive {
+#custom-stt.stopped {
   color: @inactive;
 }
 
