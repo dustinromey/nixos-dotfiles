@@ -28,9 +28,9 @@ Requirements for initial release. Each maps to roadmap phases.
 
 ### GPU Acceleration
 
-- [ ] **GPU-01**: Vulkan package variant used on intrepid (AMD desktop)
-- [ ] **GPU-02**: Vulkan package variant used on vigilant (AMD Surface Laptop)
-- [ ] **GPU-03**: CPU-only (default) package variant used on mischief (Intel)
+- [x] **GPU-01**: Vulkan package variant used on intrepid (AMD desktop)
+- [x] **GPU-02**: Vulkan package variant used on vigilant (AMD Surface Laptop)
+- [x] **GPU-03**: CPU-only (default) package variant used on mischief (Intel)
 
 ### waystt Removal
 
@@ -102,9 +102,9 @@ Which phases cover which requirements. Updated during roadmap creation.
 | REM-02 | Phase 2 | Complete |
 | REM-03 | Phase 2 | Complete |
 | REM-04 | Phase 2 | Complete |
-| GPU-01 | Phase 3 | Pending |
-| GPU-02 | Phase 3 | Pending |
-| GPU-03 | Phase 3 | Pending |
+| GPU-01 | Phase 3 | Complete |
+| GPU-02 | Phase 3 | Complete |
+| GPU-03 | Phase 3 | Complete |
 | BAR-01 | Phase 3 | Pending |
 | BAR-02 | Phase 3 | Pending |
 

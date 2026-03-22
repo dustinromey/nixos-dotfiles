@@ -49,7 +49,7 @@ Plans:
   1. Intrepid and vigilant report Vulkan backend active in voxtype logs after rebuild
   2. Mischief remains on CPU-only package (no Vulkan override in mischief home.nix)
   3. Waybar STT module reflects recording/idle state in real time while using push-to-talk
-**Plans:** 2 plans
+**Plans:** 1/2 plans executed
 Plans:
 - [ ] 03-01-PLAN.md — Fix PATH workaround and add Vulkan override to AMD hosts
 - [ ] 03-02-PLAN.md — Add Waybar custom/stt module with live voxtype status
@@ -63,7 +63,7 @@ Phases execute in numeric order: 1 → 2 → 3
 |-------|----------------|--------|-----------|
 | 1. Flake Foundation | 1/1 | Complete    | 2026-03-20 |
 | 2. Daemon + Replacement | 0/1 | Complete    | 2026-03-22 |
-| 3. GPU Acceleration + Waybar | 0/2 | Not started | - |
+| 3. GPU Acceleration + Waybar | 1/2 | In Progress|  |
 
 ### Phase 4: Add claude-for-linux to NixOS setup
 
