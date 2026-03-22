@@ -77,10 +77,6 @@ binds {
         spawn "bash" "-c" "swww img $(find ~/Pictures/walls/ -type f | shuf -n 1)"
     }
 
-    // Speech to Text (waystt)
-    Mod+R hotkey-overlay-title="STT (type)" { spawn "bash" "-c" "YDOTOOL_SOCKET=/run/user/1000/.ydotool_socket ~/.local/bin/stt-toggle.sh type"; }
-    Mod+Shift+R hotkey-overlay-title="STT (clipboard)" { spawn "bash" "-c" "~/.local/bin/stt-toggle.sh clipboard"; }
-
     // ── Audio Controls (with OSD) ───
     // Using swayosd for on-screen display
     XF86AudioRaiseVolume                allow-when-locked=true { spawn "swayosd-client" "--output-volume" "raise"; }

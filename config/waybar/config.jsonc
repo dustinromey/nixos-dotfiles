@@ -9,7 +9,7 @@
 
   "modules-left": ["niri/workspaces"],
   "modules-center": ["clock"],
-  "modules-right": ["custom/stt", "pulseaudio", "network", "bluetooth", "battery", "tray"],
+  "modules-right": ["pulseaudio", "network", "bluetooth", "battery", "tray"],
 
   "niri/workspaces": {
     "on-click": "activate",
@@ -87,13 +87,5 @@
   "tray": {
     "icon-size": 16,
     "spacing": 8
-  },
-
-  "custom/stt": {
-    "exec": "~/.config/waybar/scripts/stt-status.sh",
-    "return-type": "json",
-    "interval": 1,
-    "on-click": "~/.local/bin/stt-toggle.sh",
-    "tooltip": true
   }
 }
