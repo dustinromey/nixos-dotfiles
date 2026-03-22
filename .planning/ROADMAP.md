@@ -61,3 +61,12 @@ Phases execute in numeric order: 1 → 2 → 3
 | 1. Flake Foundation | 1/1 | Complete    | 2026-03-20 |
 | 2. Daemon + Replacement | 0/1 | Not started | - |
 | 3. GPU Acceleration + Waybar | 0/? | Not started | - |
+
+### Phase 4: Add claude-for-linux to NixOS setup
+
+**Goal:** [To be planned]
+**Depends on:** Phase 3
+**Plans:** 0 plans
+
+Plans:
+- [ ] TBD (run /gsd:plan-phase 4 to break down)

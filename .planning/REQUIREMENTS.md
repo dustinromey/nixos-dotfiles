@@ -15,16 +15,16 @@ Requirements for initial release. Each maps to roadmap phases.
 
 ### Speech-to-Text Core
 
-- [ ] **STT-01**: Voxtype daemon running as systemd user service on all three hosts
-- [ ] **STT-02**: Whisper base.en model configured for transcription
-- [ ] **STT-03**: Text injection at cursor working via wtype/ydotool
-- [ ] **STT-04**: Service PATH workaround applied for upstream bug #253
+- [x] **STT-01**: Voxtype daemon running as systemd user service on all three hosts
+- [x] **STT-02**: Whisper base.en model configured for transcription
+- [x] **STT-03**: Text injection at cursor working via wtype/ydotool
+- [x] **STT-04**: Service PATH workaround applied for upstream bug #253
 
 ### Push-to-Talk
 
-- [ ] **PTT-01**: Push-to-talk working via voxtype's built-in evdev hotkey mode
-- [ ] **PTT-02**: Hotkey configured as Alt_R + Menu combo
-- [ ] **PTT-03**: Voxtype hotkey uses evdev (not compositor bindings, since Niri lacks key-release)
+- [x] **PTT-01**: Push-to-talk working via voxtype's built-in evdev hotkey mode
+- [x] **PTT-02**: Hotkey configured as Alt_R + Menu combo
+- [x] **PTT-03**: Voxtype hotkey uses evdev (not compositor bindings, since Niri lacks key-release)
 
 ### GPU Acceleration
 
@@ -34,10 +34,10 @@ Requirements for initial release. Each maps to roadmap phases.
 
 ### waystt Removal
 
-- [ ] **REM-01**: Waystt overlay removed from flake.nix
-- [ ] **REM-02**: Waystt package directory (packages/waystt/) removed
-- [ ] **REM-03**: Waystt-related Niri keybindings removed from config
-- [ ] **REM-04**: Waystt toggle/status scripts removed or replaced
+- [x] **REM-01**: Waystt overlay removed from flake.nix
+- [x] **REM-02**: Waystt package directory (packages/waystt/) removed
+- [x] **REM-03**: Waystt-related Niri keybindings removed from config
+- [x] **REM-04**: Waystt toggle/status scripts removed or replaced
 
 ### Waybar Integration
 
@@ -91,17 +91,17 @@ Which phases cover which requirements. Updated during roadmap creation.
 | FLAKE-01 | Phase 1 | Complete |
 | FLAKE-02 | Phase 1 | Complete |
 | FLAKE-03 | Phase 1 | Complete |
-| STT-01 | Phase 2 | Pending |
-| STT-02 | Phase 2 | Pending |
-| STT-03 | Phase 2 | Pending |
-| STT-04 | Phase 2 | Pending |
-| PTT-01 | Phase 2 | Pending |
-| PTT-02 | Phase 2 | Pending |
-| PTT-03 | Phase 2 | Pending |
-| REM-01 | Phase 2 | Pending |
-| REM-02 | Phase 2 | Pending |
-| REM-03 | Phase 2 | Pending |
-| REM-04 | Phase 2 | Pending |
+| STT-01 | Phase 2 | Complete |
+| STT-02 | Phase 2 | Complete |
+| STT-03 | Phase 2 | Complete |
+| STT-04 | Phase 2 | Complete |
+| PTT-01 | Phase 2 | Complete |
+| PTT-02 | Phase 2 | Complete |
+| PTT-03 | Phase 2 | Complete |
+| REM-01 | Phase 2 | Complete |
+| REM-02 | Phase 2 | Complete |
+| REM-03 | Phase 2 | Complete |
+| REM-04 | Phase 2 | Complete |
 | GPU-01 | Phase 3 | Pending |
 | GPU-02 | Phase 3 | Pending |
 | GPU-03 | Phase 3 | Pending |
