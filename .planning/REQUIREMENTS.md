@@ -44,6 +44,13 @@ Requirements for initial release. Each maps to roadmap phases.
 - [x] **BAR-01**: Waybar STT status script updated to query voxtype state
 - [x] **BAR-02**: Waybar module shows recording/idle status for voxtype
 
+### Claude Integration
+
+- [ ] **CLAUDE-01**: Claude Code CLI installed via Nix and available in PATH on all hosts
+- [ ] **CLAUDE-02**: Claude desktop app installed with desktop entry and icon
+- [ ] **CLAUDE-03**: Both claude packages added through common home.nix (shared across hosts)
+- [ ] **CLAUDE-04**: `nix flake check` passes with claude packages present
+
 ## v2 Requirements
 
 Deferred to future release. Tracked but not in current roadmap.
@@ -108,9 +115,14 @@ Which phases cover which requirements. Updated during roadmap creation.
 | BAR-01 | Phase 3 | Complete |
 | BAR-02 | Phase 3 | Complete |
 
+| CLAUDE-01 | Phase 4 | Planned |
+| CLAUDE-02 | Phase 4 | Planned |
+| CLAUDE-03 | Phase 4 | Planned |
+| CLAUDE-04 | Phase 4 | Planned |
+
 **Coverage:**
-- v1 requirements: 19 total
-- Mapped to phases: 19
+- v1 requirements: 23 total
+- Mapped to phases: 23
 - Unmapped: 0
 
 ---
