@@ -2,26 +2,25 @@
 
 ## Project Reference
 
-See: .planning/PROJECT.md (updated 2026-03-20)
+See: .planning/PROJECT.md (updated 2026-03-22)
 
 **Core value:** Maintain a reproducible, modular NixOS configuration that works reliably across all three hosts with shared defaults and clean per-host overrides
-**Current focus:** Phase 4 — Add claude-for-linux to NixOS setup
+**Current focus:** v1.0 complete — planning next milestone
 
 ## Current Position
 
-Phase: 4 of 4 (Add claude-for-linux to NixOS setup) — COMPLETE
-Plan: 1 of 1 complete in current phase
-Status: All phases complete
-Last activity: 2026-03-22 — Executed 04-01-PLAN.md; Claude Desktop Linux app added to all hosts via common home.nix
+Milestone: v1.0 Voxtype Integration — SHIPPED
+Status: All phases complete, milestone archived
+Last activity: 2026-03-22 — Milestone v1.0 completed and archived
 
 Progress: [██████████] 100%
 
 ## Performance Metrics
 
 **Velocity:**
-- Total plans completed: 3
+- Total plans completed: 5
 - Average duration: 4 min
-- Total execution time: 13 min
+- Total execution time: 20 min
 
 **By Phase:**
 
@@ -32,47 +31,28 @@ Progress: [██████████] 100%
 | 03 (GPU Acceleration & Waybar) | 2 | 7 min | 3.5 min |
 | 04 (Claude for Linux) | 1 | 3 min | 3 min |
 
-**Recent Trend:**
-- Last 5 plans: 01-01 (7 min), 02-01 (3 min), 03-01 (4 min), 03-02 (3 min), 04-01 (3 min)
-- Trend: Stable ~3-4 min/plan
-
 *Updated after each plan completion*
 
 ## Accumulated Context
 
 ### Decisions
 
-Decisions are logged in PROJECT.md Key Decisions table.
-Recent decisions affecting current work:
-
-- Vulkan over ROCm for AMD GPU acceleration — more portable, avoids ROCm complexity
-- Home Manager module over NixOS module for user config — consistent with existing repo pattern
-- Evdev hotkey mode for push-to-talk — Niri has no key-release bind; evdev is the only viable approach
-- Waystt removal is atomic with keybinding update in Phase 2 — prevents partial state with both tools present
-- [Phase 01]: programs.voxtype.package must be set explicitly — upstream module has no default; set to CPU default with lib.mkDefault so hosts can override to vulkan/rocm in Phase 3
-- [Phase 01]: Pinned voxtype to v0.6.4 tag with nixpkgs.follows to prevent double evaluation
-- [Phase 02-daemon-replacement]: wtype bundled in voxtype derivation — PATH workaround points to voxtype store path only, no separate pkgs.wtype needed
-- [Phase 02-daemon-replacement]: No replacement Niri keybindings added — voxtype evdev handles push-to-talk at input layer without compositor binds
-- [Phase 03-gpu-acceleration-waybar]: Vulkan over CPU-only for AMD hosts: intrepid and vigilant override voxtype package to Vulkan variant; mischief inherits CPU default via lib.mkDefault
-- [Phase 03-waybar-stt]: Use Service.Environment for Waybar PATH (not systemd path= option) — home-manager path option expects attrset, not list; Service.Environment matches existing voxtype pattern
-- [Phase 04]: Use claude-desktop (not claude-desktop-with-fhs) — FHS variant is only for MCP servers, out of scope
-- [Phase 04]: No manual xdg.desktopEntries for Claude Desktop — k3d3 package auto-includes .desktop file; manual entry would duplicate
-- [Phase 04]: flake-utils added as top-level input with follows from claude-desktop to prevent double evaluation
+See PROJECT.md Key Decisions table for full history.
 
 ### Pending Todos
 
-None yet.
+None.
 
 ### Roadmap Evolution
 
-- Phase 4 added: Add claude-for-linux to NixOS setup
+- v1.0 milestone complete and archived
 
 ### Blockers/Concerns
 
-- Phase 3: vigilant Surface Laptop 4 AMD iGPU may give no meaningful Vulkan speedup; revisit at Phase 3 execution
+None active.
 
 ## Session Continuity
 
 Last session: 2026-03-22
-Stopped at: Completed 04-01-PLAN.md — Claude Desktop Linux app added to all hosts via common home.nix
-Resume file: N/A — all phases complete
+Stopped at: Milestone v1.0 archived
+Resume file: N/A — start next milestone with /gsd:new-milestone
