@@ -1,5 +1,6 @@
 {
   config,
+  lib,
   pkgs,
   inputs,
   ...
@@ -50,7 +51,7 @@ in
 
   programs.voxtype = {
     enable = true;
-    package = inputs.voxtype.packages.${pkgs.system}.default;
+    package = lib.mkDefault inputs.voxtype.packages.${pkgs.system}.default;
 
     service.enable = true;
 
@@ -77,7 +78,7 @@ in
   systemd.user.services.voxtype = {
     Service = {
       Environment = [
-        "PATH=/run/current-system/sw/bin:${inputs.voxtype.packages.${pkgs.system}.default}/bin"
+        "PATH=/run/current-system/sw/bin:${config.programs.voxtype.package}/bin"
       ];
     };
   };
