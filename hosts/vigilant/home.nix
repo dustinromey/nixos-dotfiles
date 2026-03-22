@@ -1,9 +1,15 @@
-{ config, pkgs, inputs, ... }:
+{
+  config,
+  pkgs,
+  inputs,
+  ...
+}:
 
 {
   imports = [
     ../common/home.nix
   ];
 
-  # Host-specific home configuration overrides for vigilant
+  # Use Vulkan-accelerated voxtype on AMD Surface Laptop
+  programs.voxtype.package = inputs.voxtype.packages.${pkgs.system}.vulkan;
 }
