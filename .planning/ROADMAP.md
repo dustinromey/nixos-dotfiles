@@ -12,7 +12,7 @@ This roadmap replaces waystt with voxtype across all three hosts (mischief, intr
 
 - [x] **Phase 1: Flake Foundation** - Add voxtype flake input and import NixOS module in common configuration (completed 2026-03-20)
 - [x] **Phase 2: Daemon + Replacement** - Activate voxtype daemon on all hosts with push-to-talk; atomically remove waystt (completed 2026-03-22)
-- [ ] **Phase 3: GPU Acceleration + Waybar** - Enable Vulkan on AMD hosts and update Waybar STT status widget
+- [x] **Phase 3: GPU Acceleration + Waybar** - Enable Vulkan on AMD hosts and update Waybar STT status widget (completed 2026-03-22)
 
 ## Phase Details
 
@@ -49,7 +49,7 @@ Plans:
   1. Intrepid and vigilant report Vulkan backend active in voxtype logs after rebuild
   2. Mischief remains on CPU-only package (no Vulkan override in mischief home.nix)
   3. Waybar STT module reflects recording/idle state in real time while using push-to-talk
-**Plans:** 1/2 plans executed
+**Plans:** 2/2 plans complete
 Plans:
 - [ ] 03-01-PLAN.md — Fix PATH workaround and add Vulkan override to AMD hosts
 - [ ] 03-02-PLAN.md — Add Waybar custom/stt module with live voxtype status
@@ -63,7 +63,7 @@ Phases execute in numeric order: 1 → 2 → 3
 |-------|----------------|--------|-----------|
 | 1. Flake Foundation | 1/1 | Complete    | 2026-03-20 |
 | 2. Daemon + Replacement | 0/1 | Complete    | 2026-03-22 |
-| 3. GPU Acceleration + Waybar | 1/2 | In Progress|  |
+| 3. GPU Acceleration + Waybar | 2/2 | Complete   | 2026-03-22 |
 
 ### Phase 4: Add claude-for-linux to NixOS setup
 

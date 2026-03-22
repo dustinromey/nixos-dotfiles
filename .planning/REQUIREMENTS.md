@@ -41,8 +41,8 @@ Requirements for initial release. Each maps to roadmap phases.
 
 ### Waybar Integration
 
-- [ ] **BAR-01**: Waybar STT status script updated to query voxtype state
-- [ ] **BAR-02**: Waybar module shows recording/idle status for voxtype
+- [x] **BAR-01**: Waybar STT status script updated to query voxtype state
+- [x] **BAR-02**: Waybar module shows recording/idle status for voxtype
 
 ## v2 Requirements
 
@@ -105,8 +105,8 @@ Which phases cover which requirements. Updated during roadmap creation.
 | GPU-01 | Phase 3 | Complete |
 | GPU-02 | Phase 3 | Complete |
 | GPU-03 | Phase 3 | Complete |
-| BAR-01 | Phase 3 | Pending |
-| BAR-02 | Phase 3 | Pending |
+| BAR-01 | Phase 3 | Complete |
+| BAR-02 | Phase 3 | Complete |
 
 **Coverage:**
 - v1 requirements: 19 total

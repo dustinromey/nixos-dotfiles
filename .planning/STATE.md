@@ -5,23 +5,23 @@
 See: .planning/PROJECT.md (updated 2026-03-20)
 
 **Core value:** Maintain a reproducible, modular NixOS configuration that works reliably across all three hosts with shared defaults and clean per-host overrides
-**Current focus:** Phase 3 — GPU Acceleration & Waybar
+**Current focus:** Phase 4 — Add claude-for-linux to NixOS setup
 
 ## Current Position
 
-Phase: 3 of 4 (GPU Acceleration & Waybar)
-Plan: 1 of 2 complete in current phase
-Status: Phase 3 in progress — 03-01 complete, 03-02 pending
-Last activity: 2026-03-22 — Executed 03-01-PLAN.md; Vulkan voxtype enabled on AMD hosts
+Phase: 3 of 4 (GPU Acceleration & Waybar) — COMPLETE
+Plan: 2 of 2 complete in current phase
+Status: Phase 3 complete — Phase 4 pending
+Last activity: 2026-03-22 — Executed 03-02-PLAN.md; Waybar STT module with voxtype integration added
 
-Progress: [███████░░░] 75%
+Progress: [█████████░] 90%
 
 ## Performance Metrics
 
 **Velocity:**
-- Total plans completed: 2
-- Average duration: 5 min
-- Total execution time: 10 min
+- Total plans completed: 3
+- Average duration: 4 min
+- Total execution time: 13 min
 
 **By Phase:**
 
@@ -29,11 +29,11 @@ Progress: [███████░░░] 75%
 |-------|-------|-------|----------|
 | 01 (Flake Foundation) | 1 | 7 min | 7 min |
 | 02 (Daemon Replacement) | 1 | 3 min | 3 min |
-| 03 (GPU Acceleration & Waybar) | 1 | 4 min | 4 min |
+| 03 (GPU Acceleration & Waybar) | 2 | 7 min | 3.5 min |
 
 **Recent Trend:**
-- Last 5 plans: 01-01 (7 min), 02-01 (3 min), 03-01 (4 min)
-- Trend: —
+- Last 5 plans: 01-01 (7 min), 02-01 (3 min), 03-01 (4 min), 03-02 (3 min)
+- Trend: Stable ~3-4 min/plan
 
 *Updated after each plan completion*
 
@@ -53,6 +53,7 @@ Recent decisions affecting current work:
 - [Phase 02-daemon-replacement]: wtype bundled in voxtype derivation — PATH workaround points to voxtype store path only, no separate pkgs.wtype needed
 - [Phase 02-daemon-replacement]: No replacement Niri keybindings added — voxtype evdev handles push-to-talk at input layer without compositor binds
 - [Phase 03-gpu-acceleration-waybar]: Vulkan over CPU-only for AMD hosts: intrepid and vigilant override voxtype package to Vulkan variant; mischief inherits CPU default via lib.mkDefault
+- [Phase 03-waybar-stt]: Use Service.Environment for Waybar PATH (not systemd path= option) — home-manager path option expects attrset, not list; Service.Environment matches existing voxtype pattern
 
 ### Pending Todos
 
@@ -69,5 +70,5 @@ None yet.
 ## Session Continuity
 
 Last session: 2026-03-22
-Stopped at: Completed 03-01-PLAN.md — Vulkan voxtype enabled on AMD hosts
-Resume file: .planning/phases/03-gpu-acceleration-waybar/
+Stopped at: Completed 03-02-PLAN.md — Waybar STT module with voxtype integration added
+Resume file: .planning/phases/04-add-claude-for-linux-to-nixos-setup/
