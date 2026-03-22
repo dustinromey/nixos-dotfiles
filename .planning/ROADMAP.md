@@ -11,7 +11,7 @@ This roadmap replaces waystt with voxtype across all three hosts (mischief, intr
 - Decimal phases (2.1, 2.2): Urgent insertions (marked with INSERTED)
 
 - [x] **Phase 1: Flake Foundation** - Add voxtype flake input and import NixOS module in common configuration (completed 2026-03-20)
-- [ ] **Phase 2: Daemon + Replacement** - Activate voxtype daemon on all hosts with push-to-talk; atomically remove waystt
+- [x] **Phase 2: Daemon + Replacement** - Activate voxtype daemon on all hosts with push-to-talk; atomically remove waystt (completed 2026-03-22)
 - [ ] **Phase 3: GPU Acceleration + Waybar** - Enable Vulkan on AMD hosts and update Waybar STT status widget
 
 ## Phase Details
@@ -37,7 +37,7 @@ Plans:
   2. Holding the evdev hotkey (Alt_R + Menu) starts recording; releasing stops and injects transcribed text at cursor
   3. Waystt overlay is absent from flake.nix and packages/waystt/ directory is gone; `nix flake check` still passes
   4. Old waystt keybindings are removed from Niri config and no dead references to waystt toggle scripts remain
-**Plans:** 1 plan
+**Plans:** 1/1 plans complete
 Plans:
 - [ ] 02-01-PLAN.md — Configure voxtype daemon with PTT and remove all waystt artifacts
 
@@ -59,7 +59,7 @@ Phases execute in numeric order: 1 → 2 → 3
 | Phase | Plans Complete | Status | Completed |
 |-------|----------------|--------|-----------|
 | 1. Flake Foundation | 1/1 | Complete    | 2026-03-20 |
-| 2. Daemon + Replacement | 0/1 | Not started | - |
+| 2. Daemon + Replacement | 0/1 | Complete    | 2026-03-22 |
 | 3. GPU Acceleration + Waybar | 0/? | Not started | - |
 
 ### Phase 4: Add claude-for-linux to NixOS setup
