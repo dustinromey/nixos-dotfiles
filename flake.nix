@@ -9,6 +9,10 @@
     # Claude
     claude-code.url = "github:ryoppippi/claude-code-overlay";
     claude-code.inputs.nixpkgs.follows = "nixpkgs";
+    flake-utils.url = "github:numtide/flake-utils";
+    claude-desktop.url = "github:k3d3/claude-desktop-linux-flake";
+    claude-desktop.inputs.nixpkgs.follows = "nixpkgs";
+    claude-desktop.inputs.flake-utils.follows = "flake-utils";
 
     # Secrets management
     sops-nix.url = "github:Mic92/sops-nix";
