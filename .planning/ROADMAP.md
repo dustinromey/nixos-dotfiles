@@ -57,7 +57,7 @@ Plans:
 ## Progress
 
 **Execution Order:**
-Phases execute in numeric order: 1 → 2 → 3
+Phases execute in numeric order: 1 → 2 → 3 → 4
 
 | Phase | Plans Complete | Status | Completed |
 |-------|----------------|--------|-----------|
@@ -66,10 +66,15 @@ Phases execute in numeric order: 1 → 2 → 3
 | 3. GPU Acceleration + Waybar | 2/2 | Complete    | 2026-03-22 |
 
 ### Phase 4: Add claude-for-linux to NixOS setup
-
-**Goal:** [To be planned]
-**Depends on:** Phase 3
-**Plans:** 0 plans
+**Goal**: Claude Code CLI and Claude desktop app are installed on all hosts via Nix with desktop integration
+**Depends on**: Phase 3
+**Requirements**: CLAUDE-01, CLAUDE-02, CLAUDE-03, CLAUDE-04
+**Success Criteria** (what must be TRUE):
+  1. `claude --version` works in any terminal on all hosts after rebuild
+  2. Claude desktop app launches from application launcher (Rofi) and appears in desktop entries
+  3. `nix flake check` passes with claude packages present
+  4. All hosts share the same claude installation via common home.nix
+**Plans:** 1 plan
 
 Plans:
-- [ ] TBD (run /gsd:plan-phase 4 to break down)
+- [ ] 04-01-PLAN.md — Add claude-desktop flake input and package to common home.nix
