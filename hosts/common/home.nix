@@ -83,6 +83,15 @@ in
     };
   };
 
+  # Ensure Waybar can find voxtype for the custom/stt module
+  systemd.user.services.waybar = {
+    Service = {
+      Environment = [
+        "PATH=/run/current-system/sw/bin:${config.programs.voxtype.package}/bin"
+      ];
+    };
+  };
+
   # 1. Install Zed and the required Language Servers
   home.packages = with pkgs; [
     # --- Language Servers (LSPs) & Formatters ---
