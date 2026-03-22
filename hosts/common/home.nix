@@ -139,6 +139,7 @@ in
     fastfetch
     btop
     claude-code
+    inputs.claude-desktop.packages.${pkgs.system}.claude-desktop
     inputs.fresh.packages.${pkgs.system}.default # Fresh text editor
     waybar
     impala # WiFi TUI
