@@ -101,7 +101,7 @@
   };
 
   #############################################################################
-  # Homebrew — taps, casks, brews, masApps (populated in subsequent phases)
+  # Homebrew — taps, casks, brews, masApps
   #############################################################################
 
   homebrew = {
@@ -113,9 +113,49 @@
       cleanup = "uninstall";
     };
 
-    taps = [ ];
-    brews = [ ];
-    casks = [ ];
+    taps = [
+      "BarutSRB/tap"
+    ];
+
+    brews = [
+      "mas"
+      "mpv"
+    ];
+
+    casks = [
+      "claude"
+
+      "brave-browser"
+
+      "ghostty"
+      "zed"
+      "obsidian"
+
+      "bitwarden"
+      "raycast"
+
+      # Native macOS mpv front-end (mpv itself has no cask)
+      "iina"
+      "obs"
+
+      # FileZilla was removed from Homebrew over bundled-installer concerns;
+      # Cyberduck is the open-source SFTP/FTP/WebDAV replacement.
+      "cyberduck"
+      # The bare `tailscale` cask was deprecated; `-app` is the current name.
+      "tailscale-app"
+      # Native macOS Syncthing GUI (the `syncthing` formula is CLI-only).
+      "syncthing-app"
+
+      # Tiling WM with Niri-style scrolling columns (via BarutSRB/tap above).
+      "omniwm"
+
+      "font-jetbrains-mono-nerd-font"
+      "font-hack"
+
+      # TODO: Anthropic Cowork has no Homebrew cask as of 2026-05-16 —
+      # install manually until a tap exists.
+    ];
+
     masApps = { };
   };
 }
