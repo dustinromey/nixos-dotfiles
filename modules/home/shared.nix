@@ -69,6 +69,9 @@ in
 
     # --- From flake inputs / overlays ---
     claude-code
+  ]
+  ++ lib.optionals pkgs.stdenv.isLinux [
+    # fresh's flake only exposes Linux systems
     inputs.fresh.packages.${pkgs.system}.default
   ];
 
