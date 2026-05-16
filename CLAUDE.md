@@ -113,7 +113,27 @@ flake.nix                    # Entry point: defines NixOS hosts + macOS (darwin)
 - **Shared by default**: All hosts share the same base configuration unless overridden
 - **lib.mkDefault**: Used in common config to allow host-specific overrides
 - **Neovim**: Uses lazy.nvim package manager, LSP keybinds are `gd` (definition), `gr` (references), `K` (hover), `<F2>` (rename), `<F3>` (format), `<F4>` (code actions)
-- **Window manager**: Qtile with vim-style navigation (Super+hjkl), Super+Space for Rofi launcher
+- **Window manager (Linux)**: Qtile with vim-style navigation (Super+hjkl), Super+Space for Rofi launcher
+- **Window manager (macOS)**: OmniWM (Niri-style scrolling columns + Hyprland dwindle), installed via the `BarutSRB/tap` Homebrew tap
+
+## Design Notes — macOS / nix-darwin
+
+These are decisions and gotchas specific to the darwin side of the flake. Read this before touching `darwin/` or the darwin inputs in `flake.nix`.
+
+- **Apple Silicon assumed.** Both Macs evaluate as `aarch64-darwin`. To add an Intel Mac, change its `system` in `flake.nix` to `x86_64-darwin`.
+- **GUI apps via Homebrew, not Nix.** macOS GUI builds in nixpkgs are unreliable; nix-darwin's `homebrew` module declaratively drives `brew install`. `cleanup = "uninstall"` removes any cask not in the declared list while preserving user data; flip to `"zap"` for stricter parity.
+- **`nix-homebrew` is pinned.** The current `main` requires `ruby_4_0`, which nixpkgs-25.05 doesn't ship (it only goes up to `ruby_3_4`). The flake pins the last commit before that bump. **Unpin when upgrading to nixpkgs-25.11+.**
+- **Ctrl ↔ Cmd swap uses `userKeyMapping`.** nix-darwin has no `swapLeftCtrlAndLeftCmd` option — its built-in swaps are limited to Cmd↔Alt and Ctrl↔Fn. The Ctrl↔Cmd swap is implemented in `darwin/common.nix` via `system.keyboard.userKeyMapping` (HID usage IDs `30064771296` / `30064771299` = `0x7000000E0` / `0x7000000E3`). Nix has no hex literals — keep these as decimal.
+- **`fresh` editor is Linux-only.** Its flake only exposes Linux systems, so it's wrapped in `lib.optionals stdenv.isLinux` in `modules/home/shared.nix`. Remove the conditional if upstream adds darwin support.
+- **`waystt` overlay is NixOS-only.** Scoped inside `mkHost` (as `linuxOverlay`); darwin evaluation never sees it.
+- **Determinate Systems Nix installer conflict.** If a Mac was set up with the Determinate Systems installer (recommended), nix-darwin's own Nix-daemon management can conflict. Set `nix.enable = false;` in `darwin/common.nix` (or the per-host file) on that machine.
+- **Cask substitutions** (where the Linux package name does not map cleanly):
+  - `mpv` → cask `iina` (no `mpv` cask exists; IINA is the native front-end). `mpv` is also installed as a CLI formula.
+  - `filezilla` → cask `cyberduck` (FileZilla was pulled from Homebrew over bundled-installer concerns).
+  - `syncthing` → cask `syncthing-app` (the `syncthing` formula is a CLI service).
+  - `tailscale` → cask `tailscale-app` (the bare `tailscale` cask was deprecated).
+- **Cowork has no Homebrew cask** as of 2026-05-16. Install manually from Anthropic until a tap exists; a TODO marker lives in `darwin/common.nix`.
+- **OmniWM requires manual macOS permissions.** Accessibility + Input Monitoring + "Displays have separate Spaces" must be off — see the bootstrap section below.
 
 ## Adding a New NixOS Host
 
@@ -150,7 +170,45 @@ flake.nix                    # Entry point: defines NixOS hosts + macOS (darwin)
    nixosConfigurations.newhost = mkHost "newhost" "x86_64-linux";
    ```
 
+## Bootstrapping a Mac (First Time)
+
+Before `nix run nix-darwin` will do anything, the Mac needs Xcode Command Line Tools and Nix installed. The flake already defines `resolute` (desktop) and `swift` (laptop); this walkthrough applies to either.
+
+1. **Install Xcode Command Line Tools:**
+   ```bash
+   xcode-select --install
+   ```
+
+2. **Install Nix** (Determinate Systems installer is the maintained recommendation):
+   ```bash
+   curl --proto '=https' --tlsv1.2 -sSf -L https://install.determinate.systems/nix | sh -s -- install
+   ```
+   If you use this installer, see the "Determinate Systems Nix installer conflict" note above — you may need `nix.enable = false;` in `darwin/common.nix`.
+
+3. **Clone the repo:**
+   ```bash
+   git clone git@github.com:dustinromey/nixos-dotfiles.git ~/nixos-dotfiles
+   cd ~/nixos-dotfiles
+   ```
+
+4. **First switch** (this also bootstraps Homebrew via nix-homebrew):
+   ```bash
+   nix run nix-darwin -- switch --flake .#resolute   # or .#swift
+   ```
+   Thereafter: `darwin-rebuild switch --flake .#<host>`.
+
+5. **Grant macOS permissions OmniWM needs** (these cannot be set declaratively — flip them by hand once):
+   - **Accessibility:** System Settings → Privacy & Security → Accessibility → enable OmniWM.
+   - **Input Monitoring:** System Settings → Privacy & Security → Input Monitoring → enable OmniWM.
+   - **Displays have separate Spaces** must be **off**: System Settings → Desktop & Dock → Mission Control.
+
+6. **Install Cowork manually** (no Homebrew cask exists). Download from Anthropic.
+
+7. **Log out / restart affected apps** after `darwin-rebuild switch` if you changed `CustomUserPreferences` (keyboard shortcuts, etc.) — `cfprefsd` caches preferences and shortcuts are read at login / app launch.
+
 ## Adding a New macOS Host
+
+For a third Mac beyond `resolute` and `swift`:
 
 1. Create directory: `mkdir -p darwin/newmac`
 2. Create `darwin/newmac/configuration.nix`:
@@ -176,14 +234,11 @@ flake.nix                    # Entry point: defines NixOS hosts + macOS (darwin)
    ```nix
    darwinConfigurations.newmac = mkDarwinHost "newmac" "aarch64-darwin";
    ```
-5. On the new Mac (prerequisites: Nix installed, Xcode CLT installed):
-   ```bash
-   nix run nix-darwin -- switch --flake .#newmac
-   ```
+5. Follow the "Bootstrapping a Mac" steps above on the new machine, substituting `newmac` for the hostname.
 
 ## Installed Language Servers
 
-Defined in hosts/common/home.nix: nixd, pyright, rust-analyzer, gopls, typescript-language-server, lua-language-server, bash-language-server, sqls, fish-lsp
+Defined in modules/home/shared.nix (cross-platform): nixd, nil, pyright, rust-analyzer, gopls, typescript-language-server, lua-language-server, bash-language-server, vscode-langservers-extracted (JSON), sqls, fish-lsp
 
 ## Installed Formatters
 
