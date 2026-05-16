@@ -2,7 +2,8 @@
 
 {
   imports = [
-    ../common/home.nix
+    ../../modules/home/shared.nix
+    ../../modules/home/linux.nix
   ];
 
   # Host-specific home configuration overrides for vigilant
