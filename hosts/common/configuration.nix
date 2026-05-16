@@ -6,6 +6,22 @@
   boot.loader.systemd-boot.configurationLimit = lib.mkDefault 7;  # Keep last 7 generations in boot menu
   boot.loader.efi.canTouchEfiVariables = lib.mkDefault true;
 
+  # CVE-2026-31431 (Copy Fail) mitigation — local privesc via AF_ALG/algif_aead.
+  # Current nixpkgs ships 6.12.63 / 6.18.2; both pre-date the LTS backport.
+  # Remove this block once kernel ≥ patched 6.12.x (or ≥ 6.18.22) lands.
+  boot.blacklistedKernelModules = [
+    "algif_aead"
+    "algif_skcipher"
+    "algif_hash"
+    "algif_rng"
+  ];
+  boot.extraModprobeConfig = ''
+    install algif_aead /bin/false
+    install algif_skcipher /bin/false
+    install algif_hash /bin/false
+    install algif_rng /bin/false
+  '';
+
   # Automatic garbage collection
   nix.gc = {
     automatic = true;
@@ -112,6 +128,9 @@
   services.udisks2.enable = true;
   services.gvfs.enable = true;  # Virtual filesystem for removable media, trash support
   services.tumbler.enable = true;  # Thumbnail service for Thunar
+
+  # Firmware update daemon (for fwupdmgr - SSD/BIOS/peripheral firmware via LVFS)
+  services.fwupd.enable = true;
 
   # evremap package and uinput enabled in common config
   # Host-specific configs define the systemd service with appropriate config file
